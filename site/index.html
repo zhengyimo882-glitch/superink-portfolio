@@ -3,13 +3,242 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f1ebdd">
-    <meta name="description" content="Yimo Zheng's game development portfolio — SuperInk, a Unity technical-design prototype built around drawing recognition and tactical weapon generation.">
-    <title>SuperInk — Yimo Zheng</title>
+    <meta name="theme-color" content="#f8f4e9">
+    <meta name="description" content="SuperInk — a systemic FPS prototype where player-designed drawings become temporary combat objects.">
+    <title>SuperInk — Draw the weapon. Shape the fight.</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <main><section class="hero" id="work" aria-labelledby="hero-title"><header class="site-header"><a class="brand" href="#work" aria-label="Yimo Zheng, home"><span class="brand-mark" aria-hidden="true">墨</span><span class="brand-copy"><strong>Yimo Zheng</strong><small>Game &amp; Technical Designer</small></span></a><div class="project-switcher" aria-label="Project switcher"><button class="project-current" type="button" aria-current="page"><span>01</span> SuperInk</button><button class="project-empty" type="button" disabled="" title="Future project slot"><span>02</span> —</button></div><nav aria-label="Primary navigation"><a href="#reel">Video</a><span aria-hidden="true">/</span><a href="#algorithm">Algorithm</a><span aria-hidden="true">/</span><a href="#about">About</a></nav></header><aside class="project-rail" aria-label="Featured project metadata"><div class="rail-stamp" aria-hidden="true">超<br/>墨</div><dl><div><dt>Project</dt><dd>01 <b>/</b> 02</dd></div><div><dt>Engine</dt><dd>Unity 6</dd></div><div><dt>Role</dt><dd>Solo Developer</dd></div><div><dt>Focus</dt><dd>Technical Design</dd></div></dl></aside><div class="hero-content"><div class="hero-copy"><p class="eyebrow"><span class="target-dot" aria-hidden="true"></span>Featured Unity Project</p><h1 id="hero-title">SuperInk</h1><div class="ink-underline" aria-hidden="true"></div><p class="tagline">Draw the weapon. Shape the fight.</p><p class="intro">A first-person combat prototype where a hand-drawn pattern becomes a scored, temporary weapon with real tactical consequences.</p><ul class="tech-list" aria-label="Project disciplines"><li>Unity</li><li>C#</li><li>Recognition</li><li>Gameplay Systems</li></ul><a class="primary-cta" href="#reel">Watch gameplay <span aria-hidden="true">→</span></a><a class="scroll-cue" href="#reel"><span aria-hidden="true">↓</span> Start with the playable loop</a></div><div class="hero-art" aria-hidden="true"><div class="ink-sweep ink-sweep-one"></div><div class="ink-sweep ink-sweep-two"></div><div class="diagram-orbit orbit-one"></div><div class="diagram-orbit orbit-two"></div><div class="diagram-cross cross-horizontal"></div><div class="diagram-cross cross-vertical"></div><div class="weapon-schematic"><div class="weapon-barrel"></div><div class="weapon-body"></div><div class="weapon-core"></div><div class="weapon-grip"></div><div class="weapon-stock"></div></div><span class="measure measure-a">INPUT / STROKE</span><span class="measure measure-b">SCORE / 084</span><span class="measure measure-c">OUTPUT / STABLE</span><span class="art-plus plus-a">+</span><span class="art-plus plus-b">+</span></div></div></section><section class="reel-section" id="reel" aria-labelledby="reel-title"><div class="reel-heading"><p class="section-index"><span>01</span> Gameplay reel</p><div><h2 id="reel-title">See the loop. Then read the system.</h2><p>The final reel belongs here—before any design explanation—so the viewer first understands what drawing, generation, and combat actually feel like.</p></div></div><div class="reel-frame reel-frame-video" aria-label="SuperInk gameplay video"><div class="reel-status"><span>SuperInk // Gameplay demo</span><span>YouTube · Fullscreen available</span></div><div class="reel-video-shell"><iframe src="https://www.youtube-nocookie.com/embed/B_fIuysQRdc?rel=0&modestbranding=1" title="SuperInk gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div><div class="loop-strip" aria-label="Core gameplay loop"><span>01 Draw</span><b aria-hidden="true">→</b><span>02 Recognize</span><b aria-hidden="true">→</b><span>03 Generate</span><b aria-hidden="true">→</b><span>04 Fight</span><b aria-hidden="true">→</b><span>05 Recover ink</span></div></section><section class="difference-section" aria-labelledby="difference-title"><div class="section-heading"><p><span>02</span> What makes it different</p><h2 id="difference-title">Not a drawing minigame.</h2><p class="section-lede">SuperInk is built around one rule: drawing must remain connected to positioning, resources, weapon behavior, and player expression.</p></div><div class="difference-grid"><article><div><span>01</span><small>Tactical creation</small></div><h3>Drawing stays inside combat.</h3><p>The player can keep moving while the scroll is open, but gives up normal shooting and attention. Where and when you draw matters as much as accuracy.</p></article><article><div><span>02</span><small>Player-authored language</small></div><h3>You practice your own pattern.</h3><p>Pattern slots are designed to let players replace a default template, then learn to reproduce their own visual shorthand under pressure.</p></article><article><div><span>03</span><small>Fair mastery</small></div><h3>Quality changes reliability—not damage.</h3><p>A stronger drawing improves formation, ammo, durability, or stability. Mechanical skill is rewarded without turning accuracy into runaway DPS.</p></article><article><div><span>04</span><small>Playable failure</small></div><h3>A bad drawing creates a new problem.</h3><p>An imperfect input may still form an unstable gun that jams or expires early. Failure changes the encounter instead of ending at a red error message.</p></article></div><div class="economy-line"><p>One closed tactical economy</p><div><span>Spend ink to create</span><b>−</b><span>Generated power is temporary</span><b>+</b><span>Combat restores ink</span></div></div></section><section class="algorithm-section" id="algorithm" aria-labelledby="algorithm-title"><div class="section-heading inverse"><p><span>03</span> Recognition algorithm</p><h2 id="algorithm-title">Explainable by design.</h2><p class="section-lede">SuperInk uses a tunable geometric pipeline rather than black-box image classification. Every step has a visible design purpose and a testable output.</p></div><div class="algorithm-workbench"><div class="algorithm-tabs" role="tablist" aria-label="Drawing recognition pipeline"><button class="active" type="button" role="tab" aria-selected="true" aria-controls="algorithm-panel"><span>01</span><strong>Capture</strong><small>Raw input</small></button><button class="" type="button" role="tab" aria-selected="false" aria-controls="algorithm-panel"><span>02</span><strong>Normalize</strong><small>Remove noise</small></button><button class="" type="button" role="tab" aria-selected="false" aria-controls="algorithm-panel"><span>03</span><strong>Resample</strong><small>Stable data</small></button><button class="" type="button" role="tab" aria-selected="false" aria-controls="algorithm-panel"><span>04</span><strong>Extract</strong><small>Features</small></button><button class="" type="button" role="tab" aria-selected="false" aria-controls="algorithm-panel"><span>05</span><strong>Tier</strong><small>Gameplay output</small></button></div><div class="algorithm-panel" id="algorithm-panel" role="tabpanel"><div class="panel-index">ALG.01<span>Capture</span></div><div class="panel-copy"><p>Why this step exists</p><h3>Preserve the player’s motion.</h3><p>The drawing canvas records ordered stroke points instead of flattening the input into a screenshot. Stroke boundaries, path order, and motion remain available to the recognizer.</p></div><div class="panel-build"><p>Implementation surface</p><span>DrawingCanvasInput · DrawingPattern</span></div></div></div><div class="recognition-lab"><div class="lab-copy"><p class="micro-label">Interactive threshold model // 01</p><h3>A score becomes weapon behavior.</h3><p>The recognizer does not stop at “84% similar.” Its output travels through a quality tier and changes formation, ammunition, reliability, durability, and failure behavior.</p><div class="mapping-code" aria-label="Recognition mapping"><span>Stroke data</span><b>→</b><span>Score</span><b>→</b><span>GunDrawTier</span><b>→</b><span>GeneratedGun</span></div></div><div class="score-console"><div class="console-top"><span>Template similarity</span><output for="similarity-range">84%</output></div><input id="similarity-range" type="range" min="20" max="100" aria-label="Drawing similarity score" value="84"/><div class="thresholds" aria-hidden="true"><span>Fail &lt;55</span><span>Unstable 55+</span><span>Stable 80+</span><span>Refined 90+</span></div><div class="quality-result grade-b"><strong>B</strong><div><p>Stable</p><span>Standard build · reliable combat output</span></div></div></div></div></section><section class="engineering-section" aria-labelledby="engineering-title"><div class="section-heading"><p><span>04</span> Engineering practice</p><h2 id="engineering-title">Built to tune, test, and extend.</h2><p class="section-lede">The recognition system is separated from gun generation and the FPS framework, with dedicated testing and editor-side tooling for repeatable iteration.</p></div><div class="architecture-flow" aria-label="System architecture"><div><span>01</span><strong>Drawing input</strong><small>Ordered stroke points</small></div><b aria-hidden="true">→</b><div><span>02</span><strong>Recognizer</strong><small>Score + tier result</small></div><b aria-hidden="true">→</b><div><span>03</span><strong>GunFactory</strong><small>Generated object data</small></div><b aria-hidden="true">→</b><div><span>04</span><strong>Adapter</strong><small>FPS framework bridge</small></div></div><div class="evidence-grid"><article><strong>37</strong><div><h3>Project-specific scripts</h3><p>Runtime systems, recognition components, tests, and editor automation grouped around the prototype.</p></div></article><article><strong>02</strong><div><h3>EditMode test suites</h3><p>Recognition and stroke tests protect threshold changes from silently breaking known patterns.</p></div></article><article><strong>04</strong><div><h3>Editor automation tools</h3><p>Pattern generators and scene builders make prototype setup and regression cases reproducible.</p></div></article></div><div class="tooling-sheet"><div><p class="micro-label">Recognition validation</p><h3>Test the algorithm, not just the happy path.</h3></div><ul><li><span>TEST</span> DrawingRecognizerStrokeTests</li><li><span>TEST</span> CalligrapherRecognitionTests</li><li><span>TOOL</span> DrawingRecognitionRegressionTester</li><li><span>TOOL</span> CreateTriangleCircleTestPattern</li></ul></div></section><section class="about-section" id="about" aria-labelledby="about-title"><div class="about-stamp" aria-hidden="true">技<br/>术<br/>设<br/>计</div><div class="about-copy"><p class="micro-label">05 // About</p><h2 id="about-title">I build playable systems.</h2><p>I&#x27;m Yimo Zheng, a computer science student working toward gameplay and technical design. I move between the player-facing question and the implementation underneath it: prototype the rule, test the edge cases, then make the system easier to understand and tune.</p></div><div class="about-links" aria-label="Portfolio link placeholders"><p>Connect</p><span>Add GitHub link ↗</span><span>Add LinkedIn link ↗</span><span>Add email address ↗</span></div></section><footer><span>Yimo Zheng © 2026</span><span>Project 01 / SuperInk</span><a href="#work">Back to top ↑</a></footer></main>
+    <div class="cursor" aria-hidden="true"><i></i></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <div class="ink-fx" id="ink-fx" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="identity" href="#hero" aria-label="Yimo Zheng, home">
+        <span class="seal" aria-hidden="true">墨</span>
+        <span><strong>Yimo Zheng</strong><small>Gameplay + Technical Design</small></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#intent">Intent</a>
+        <a href="#experience">Experience</a>
+        <a href="#proof">Gameplay</a>
+        <a href="#about">About</a>
+      </nav>
+      <span class="project-code">SUPERINK / 01</span>
+    </header>
+
+    <main>
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <canvas id="brush-canvas" aria-hidden="true"></canvas>
+        <div class="paper-grain" aria-hidden="true"></div>
+
+        <div class="ink-reserve" aria-live="polite">
+          <div class="reserve-label">
+            <span>Creation ink</span>
+            <strong id="ink-percent">100%</strong>
+          </div>
+          <div class="reserve-track"><span id="reserve-fill"></span></div>
+        </div>
+
+        <div class="hero-title-wrap">
+          <p class="hero-index"><i></i> Player input detected / move to create</p>
+          <h1 id="hero-title" aria-label="SuperInk">
+            <span class="title-ghost" aria-hidden="true">SuperInk</span>
+            <span class="title-fill" id="title-fill">SuperInk</span>
+            <span class="completion-fx" aria-hidden="true">
+              <span class="completion-echo echo-a">SuperInk</span>
+              <span class="completion-echo echo-b">SuperInk</span>
+              <i class="completion-scan"></i>
+              <i class="completion-underline"></i>
+              <i class="completion-reticle"></i>
+            </span>
+          </h1>
+          <div class="hero-statement">
+            <strong>Draw the weapon.<br>Shape the fight.</strong>
+            <p>SuperInk is a systemic FPS prototype where player-designed drawings become temporary combat objects.</p>
+          </div>
+        </div>
+
+        <div class="creation-status">
+          <span id="creation-step">01 / MOVE YOUR MOUSE</span>
+          <div class="creation-score"><i id="creation-dot"></i><strong id="creation-output">000</strong><small>CREATION</small></div>
+        </div>
+
+        <button class="reset-ink" id="reset-ink" type="button">Reset canvas ↺</button>
+        <a class="enter-site" href="#intent"><span>Enter the system</span><i>↓</i></a>
+      </section>
+
+      <section class="intent-section" id="intent" aria-labelledby="intent-title">
+        <div class="section-label"><span>01</span> Design intent</div>
+        <div class="intent-heading">
+          <h2 id="intent-title">Can mouse control become a form of <em>creation?</em></h2>
+          <p>Rather than only a tool for aiming.</p>
+        </div>
+        <div class="intent-body">
+          <p>Players design their own visual patterns, reproduce them under pressure, and watch the game translate their input into physical weapons.</p>
+          <blockquote>
+            <span>I designed it.</span>
+            <span>I drew it.</span>
+            <span>I fought with it.</span>
+          </blockquote>
+          <p>A successful drawing does more than produce a reward. It creates a weapon that immediately returns the player to FPS combat, where positioning, ammunition management, trigger discipline, movement, teamwork, and tactical planning still determine the outcome.</p>
+          <p>When that self-created weapon eliminates an enemy, the combat feedback amplifies the original satisfaction of drawing it. The player experiences the consequence of something they personally brought into existence.</p>
+        </div>
+      </section>
+
+      <section class="experience-section" id="experience" aria-labelledby="experience-title">
+        <div class="experience-heading">
+          <div class="section-label light"><span>02</span> The core experience</div>
+          <h2 id="experience-title">Control becomes visible.</h2>
+          <p>Move across each principle. Every layer changes because the player made a mark.</p>
+        </div>
+
+        <div class="principle-grid">
+          <article>
+            <span>01 / AUTHORSHIP</span>
+            <div class="ui-glyph glyph-authorship" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><b></b>
+            </div>
+            <h3>Player Authorship</h3>
+            <p>Players create their own visual patterns instead of choosing only from predetermined weapon icons. Each pattern becomes a personal combat signature that can be practiced and refined.</p>
+          </article>
+          <article>
+            <span>02 / MASTERY</span>
+            <div class="ui-glyph glyph-mastery" aria-hidden="true">
+              <i></i><i></i><i></i><b></b><em></em>
+            </div>
+            <h3>Mouse Mastery Made Visible</h3>
+            <p>Stroke structure, accuracy, and similarity influence whether a weapon is refined, stable, unstable, or fails to form.</p>
+          </article>
+          <article>
+            <span>03 / CONSEQUENCE</span>
+            <div class="ui-glyph glyph-consequence" aria-hidden="true">
+              <i></i><i></i><b></b><em></em>
+            </div>
+            <h3>Creation With Consequence</h3>
+            <p>Generated weapons are powerful but temporary. Ink, ammunition, and durability force the player to decide when creation is worth the cost.</p>
+          </article>
+          <article>
+            <span>04 / COMBAT</span>
+            <div class="ui-glyph glyph-combat" aria-hidden="true">
+              <i></i><i></i><b></b><em></em>
+            </div>
+            <h3>Still an FPS</h3>
+            <p>Drawing gives players more agency, but never replaces position, aim, ammunition, trigger discipline, timing, coordination, or strategy.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="proof-section" id="proof" aria-labelledby="proof-title">
+        <div class="video-column">
+          <div class="video-frame">
+            <div class="video-top"><span>SUPERINK_GAMEPLAY.MP4</span><span>PLAYBACK / 01</span></div>
+            <div class="video-player" id="video-player">
+              <img
+                src="./assets/superink-cover.png"
+                alt="SuperInk gameplay demo thumbnail"
+                loading="lazy"
+              >
+              <button
+                class="video-play"
+                id="video-play"
+                type="button"
+                aria-label="Play SuperInk gameplay demo"
+              >
+                <i aria-hidden="true"></i>
+                <span>Play gameplay demo</span>
+                <small id="video-play-note">YouTube</small>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="proof-copy">
+          <div class="section-label"><span>03</span> Playable failure</div>
+          <h2 id="proof-title">Failure creates a new tactical situation.</h2>
+          <p>Recognition is not purely binary. An imperfect drawing may still create an unstable weapon that jams, expires early, or collapses into ink—instead of ending at a simple error message.</p>
+
+          <div class="quality-console">
+            <div class="quality-head"><span>Drawing similarity</span><output for="quality-range">76%</output></div>
+            <input id="quality-range" type="range" min="20" max="100" value="76" aria-label="Drawing similarity">
+            <div class="quality-result grade-c">
+              <strong>C</strong>
+              <div><span>UNSTABLE WEAPON</span><p>Limited ammunition · possible jam</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="loop-section" aria-labelledby="loop-title">
+        <div>
+          <div class="section-label light"><span>04</span> Core loop</div>
+          <h2 id="loop-title">Every stage returns control to the player.</h2>
+        </div>
+        <ol>
+          <li><span>01</span>Design</li><li><span>02</span>Draw</li><li><span>03</span>Recognize</li>
+          <li><span>04</span>Generate</li><li><span>05</span>Fight</li><li><span>06</span>Recover Ink</li>
+          <li><span>07</span>Adapt</li>
+        </ol>
+        <p>The drawing is theirs. The decision is theirs. The consequences are theirs.</p>
+      </section>
+
+      <section class="legacy-section" id="about" aria-labelledby="legacy-title">
+        <div class="legacy-orbit" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+        <div class="legacy-content">
+          <div class="section-label"><span>05</span> Why I make games</div>
+          <h2 id="legacy-title">I make games to create worlds that can outlive me—proof that I was here, and that I left something worth remembering.</h2>
+          <div class="legacy-meta">
+            <div class="profile-card">
+              <span class="profile-mark">YZ</span>
+              <div><strong>Yimo Zheng</strong><small>Gameplay + Technical Designer</small></div>
+            </div>
+            <dl>
+              <div><dt>Focus</dt><dd>Systemic FPS / Interaction Design</dd></div>
+              <div><dt>Tools</dt><dd>Unity / C# / Rapid Prototyping</dd></div>
+              <div><dt>Current Project</dt><dd>SuperInk / Calligrapher</dd></div>
+            </dl>
+            <a href="https://github.com/zhengyimo882-glitch" target="_blank" rel="noreferrer">View GitHub <span>↗</span></a>
+          </div>
+          <div class="resume-highlights" aria-label="Selected resume highlights">
+            <article class="education-highlight">
+              <span>Education</span>
+              <h3>University of Wisconsin-Madison</h3>
+              <p>B.S. Computer Science · GPA 3.8 / 4.0</p>
+              <small>Modern game engines · Computer graphics · Computer engineering</small>
+            </article>
+            <article>
+              <span>Software Engineering</span>
+              <h3>Real-time S&amp;P 500 intelligence platform</h3>
+              <p>Built with Flask, React, SQLite, FastAPI microservices, and Docker.</p>
+              <div class="resume-stats">
+                <strong>55<small>stocks</small></strong>
+                <strong>11<small>sectors</small></strong>
+                <strong>25%<small>faster SQL</small></strong>
+                <strong>30%<small>faster deploys</small></strong>
+              </div>
+            </article>
+            <article>
+              <span>Gameplay Algorithms + LLM</span>
+              <h3>SuperInk Recognition System</h3>
+              <p>Designed a geometric drawing-recognition pipeline using ordered stroke capture, normalization, resampling, direction structure, path length, and template similarity. LLM-assisted workflows support rapid system documentation, test-case ideation, and prototype iteration.</p>
+              <div class="resume-stats compact">
+                <strong>5<small>pipeline stages</small></strong>
+                <strong>4<small>quality tiers</small></strong>
+                <strong>LLM<small>assisted iteration</small></strong>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div><span class="seal small" aria-hidden="true">墨</span><strong>Yimo Zheng</strong></div>
+      <p>Systemic FPS prototype / Unity 6 / Solo developer</p>
+      <a href="https://github.com/zhengyimo882-glitch" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a href="#hero">Back to creation ↑</a>
+    </footer>
+
     <script src="./script.js" defer></script>
   </body>
 </html>
