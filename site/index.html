@@ -6,11 +6,29 @@
     <meta name="theme-color" content="#f8f4e9">
     <meta name="description" content="SuperInk — a systemic FPS prototype where player-designed drawings become temporary combat objects.">
     <title>SuperInk — Draw the weapon. Shape the fight.</title>
-    <link rel="stylesheet" href="./styles-superink-v5.css">
+    <link rel="stylesheet" href="./styles-superink-v6.css">
   </head>
   <body>
     <div class="cursor" aria-hidden="true"><i></i></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <svg class="scroll-ink-river" id="scroll-ink-river" aria-hidden="true" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="river-ink-gradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#004f4a" stop-opacity=".78"/>
+          <stop offset="42%" stop-color="#00a99c" stop-opacity=".72"/>
+          <stop offset="88%" stop-color="#007b72" stop-opacity=".62"/>
+          <stop offset="100%" stop-color="#007b72" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path class="ink-river-under" data-river-path></path>
+      <path class="ink-river-main" id="scroll-ink-path" data-river-path></path>
+      <path class="ink-river-light" data-river-path></path>
+      <g class="ink-river-tip" id="scroll-ink-tip">
+        <circle class="tip-halo" r="11"></circle>
+        <circle class="tip-core" r="4.5"></circle>
+        <circle class="tip-glint" cx="-1.4" cy="-1.4" r="1.2"></circle>
+      </g>
+    </svg>
 
     <header class="site-header">
       <a class="identity" href="#hero" aria-label="Yimo Zheng, home">
@@ -238,6 +256,6 @@
       <a href="#hero">Back to creation ↑</a>
     </footer>
 
-    <script src="./script-superink-v5.js" defer></script>
+    <script src="./script-superink-v6.js" defer></script>
   </body>
 </html>
