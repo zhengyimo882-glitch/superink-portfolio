@@ -225,33 +225,6 @@ const observer = new IntersectionObserver(([entry]) => {
 }, { threshold: .08 });
 observer.observe(hero);
 
-// Recognition quality demonstration.
-const qualityRange = document.querySelector("#quality-range");
-const qualityOutput = document.querySelector('output[for="quality-range"]');
-const qualityResult = document.querySelector(".quality-result");
-
-function updateQuality(value) {
-  const result = value >= 90
-    ? ["A", "REFINED WEAPON", "Maximum reliability · efficient formation", "var(--yellow)"]
-    : value >= 80
-      ? ["B", "STABLE WEAPON", "Standard ammunition · reliable output", "#55cfc0"]
-      : value >= 55
-        ? ["C", "UNSTABLE WEAPON", "Limited ammunition · possible jam", "var(--orange)"]
-        : ["D", "INK COLLAPSE", "No useful object · partial ink return", "#9da49b"];
-
-  qualityOutput.textContent = `${value}%`;
-  qualityResult.querySelector("strong").textContent = result[0];
-  qualityResult.querySelector("span").textContent = result[1];
-  qualityResult.querySelector("p").textContent = result[2];
-  qualityResult.style.borderColor = result[3];
-  qualityResult.querySelector("strong").style.background = result[3];
-  qualityResult.classList.remove("quality-pulse");
-  void qualityResult.offsetWidth;
-  qualityResult.classList.add("quality-pulse");
-}
-
-qualityRange.addEventListener("input", (event) => updateQuality(Number(event.target.value)));
-
 // YouTube rejects embeds opened directly from file:// because there is no HTTP
 // referrer. Keep local previews error-free, while preserving inline playback
 // when the site is served by GitHub Pages or any web server.
@@ -335,7 +308,7 @@ document.querySelectorAll(".video-column, .legacy-meta")
 
 // FPS surfaces gain a lightweight target lock that follows the user's pointer.
 document.querySelectorAll(
-  ".principle-grid article, .quality-console, .loop-section li, .resume-highlights article"
+  ".principle-grid article, .loop-section li, .resume-highlights article"
 ).forEach((surface) => {
   const lock = document.createElement("span");
   lock.className = "fps-pointer-lock";
@@ -385,4 +358,3 @@ document.querySelectorAll("main > section:not(.hero)")
 window.addEventListener("resize", sizeCanvas);
 sizeCanvas();
 updateCreation();
-updateQuality(Number(qualityRange.value));

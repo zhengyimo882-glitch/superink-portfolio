@@ -6,7 +6,10 @@
     <meta name="theme-color" content="#f8f4e9">
     <meta name="description" content="SuperInk — a systemic FPS prototype where player-designed drawings become temporary combat objects.">
     <title>SuperInk — Draw the weapon. Shape the fight.</title>
-    <link rel="stylesheet" href="./styles-superink-v11.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23007b72'/%3E%3Cpath d='M16 22h32v8H35l-4 18H20l5-18h-9z' fill='%23ffe000'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="./styles-superink-v11.css?v=20260727-sticky">
+    <link rel="stylesheet" href="./styles-concept-story.css?v=20260727-surface">
+    <link rel="stylesheet" href="./styles-recognition-lab.css">
   </head>
   <body>
     <div class="cursor" aria-hidden="true"><i></i></div>
@@ -18,9 +21,10 @@
         <span><strong>Yimo Zheng</strong><small>Gameplay + Technical Design</small></span>
       </a>
       <nav aria-label="Primary navigation">
+        <a href="#proof">Gameplay</a>
         <a href="#intent">Intent</a>
         <a href="#experience">Experience</a>
-        <a href="#proof">Gameplay</a>
+        <a href="#recognition">Outcomes</a>
         <a href="#about">About</a>
       </nav>
       <span class="project-code">SUPERINK / 01</span>
@@ -79,12 +83,6 @@
       </section>
 
       <section class="intent-section" id="intent" aria-labelledby="intent-title">
-        <div class="fps-section-hud range-hud" aria-hidden="true">
-          <span class="hud-corners"></span>
-          <b>TARGET / CREATION</b>
-          <small>RANGE 12.4M · TRACKING</small>
-          <i></i>
-        </div>
         <div class="section-label"><span>01</span> Design intent</div>
         <div class="intent-heading">
           <h2 id="intent-title">Can mouse control become a form of <em>creation?</em></h2>
@@ -97,8 +95,8 @@
             <span>I drew it.</span>
             <span>I fought with it.</span>
           </blockquote>
-          <p>A successful drawing does more than produce a reward. It creates a weapon that immediately returns the player to FPS combat, where positioning, ammunition management, trigger discipline, movement, teamwork, and tactical planning still determine the outcome.</p>
-          <p>When that self-created weapon eliminates an enemy, the combat feedback amplifies the original satisfaction of drawing it. The player experiences the consequence of something they personally brought into existence.</p>
+          <p>A successful drawing does not end at recognition. It creates a weapon that immediately returns the player to FPS combat, where positioning, ammunition management, trigger discipline, movement, teamwork, and tactical planning still determine the outcome.</p>
+          <p>When that self-created weapon eliminates an enemy, combat feedback amplifies the satisfaction of drawing it. The player experiences the consequence of something they personally brought into existence.</p>
         </div>
       </section>
 
@@ -110,7 +108,7 @@
         <div class="experience-heading">
           <div class="section-label light"><span>02</span> The core experience</div>
           <h2 id="experience-title">Control becomes visible.</h2>
-          <p>Move across each principle. Every layer changes because the player made a mark.</p>
+          <p>Every layer of play changes because the player made the mark.</p>
         </div>
 
         <div class="principle-grid">
@@ -128,7 +126,7 @@
               <i></i><i></i><i></i><b></b><em></em>
             </div>
             <h3>Mouse Mastery Made Visible</h3>
-            <p>Stroke structure, accuracy, and similarity influence whether a weapon is refined, stable, unstable, or fails to form.</p>
+            <p>Stroke structure, accuracy, and similarity influence the reliability and formation quality of each generated weapon.</p>
           </article>
           <article>
             <span>03 / CONSEQUENCE</span>
@@ -144,12 +142,12 @@
               <i></i><i></i><b></b><em></em>
             </div>
             <h3>Still an FPS</h3>
-            <p>Drawing gives players more agency, but never replaces position, aim, ammunition, trigger discipline, timing, coordination, or strategy.</p>
+            <p>Creation expands the player’s options, but never replaces positioning, aim, ammunition control, trigger discipline, timing, coordination, or strategy.</p>
           </article>
         </div>
       </section>
 
-      <section class="proof-section" id="proof" aria-labelledby="proof-title">
+      <section class="proof-section video-proof" id="proof" aria-label="SuperInk gameplay demo">
         <div class="video-column">
           <div class="video-frame">
             <div class="video-top"><span>SUPERINK_GAMEPLAY.MP4</span><span>PLAYBACK / 01</span></div>
@@ -179,30 +177,157 @@
           </div>
         </div>
 
-        <div class="proof-copy">
-          <div class="section-label"><span>03</span> Playable failure</div>
-          <h2 id="proof-title">Failure creates a new tactical situation.</h2>
-          <p>Recognition is not purely binary. An imperfect drawing may still create an unstable weapon that jams, expires early, or collapses into ink—instead of ending at a simple error message.</p>
+      </section>
 
-          <div class="quality-console">
-            <div class="quality-head"><span>Drawing similarity</span><output for="quality-range">76%</output></div>
-            <input id="quality-range" type="range" min="20" max="100" value="76" aria-label="Drawing similarity">
-            <div class="quality-result grade-c">
-              <strong>C</strong>
-              <div><span>UNSTABLE WEAPON</span><p>Limited ammunition · possible jam</p></div>
+      <section class="proof-section recognition-section" id="recognition" aria-labelledby="recognition-title">
+        <div class="fps-section-hud range-hud" aria-hidden="true">
+          <span class="hud-corners"></span>
+          <b>TARGET / CREATION</b>
+          <small>RANGE 12.4M · TRACKING</small>
+          <i></i>
+        </div>
+        <div class="proof-copy">
+          <div class="section-label"><span>05</span> Recognition outcomes</div>
+          <h2 id="recognition-title">Draw the signal. See what survives.</h2>
+          <p>Trace the reference pattern. The system captures your strokes, normalizes the shape, and converts geometric similarity into weapon behavior.</p>
+
+          <div class="recognition-lab" id="ink-recognition-lab">
+            <div class="lab-status-bar">
+              <strong>INK RECOGNITION LAB // LIVE INPUT</strong>
+              <span id="lab-status" aria-live="polite">AWAITING STROKE</span>
             </div>
+
+            <div class="lab-layout">
+              <div class="lab-input-column">
+                <div class="lab-canvas-shell">
+                  <div class="lab-field-labels" aria-hidden="true">
+                    <span>REFERENCE / WEAPON PATTERN 01</span>
+                    <small>DRAW INSIDE THE FIELD</small>
+                  </div>
+                  <canvas
+                    id="recognition-canvas"
+                    aria-label="Draw a pattern for geometric weapon recognition"
+                  ></canvas>
+                  <div class="lab-canvas-grid" aria-hidden="true"></div>
+                </div>
+
+                <ol class="lab-pipeline" aria-label="Recognition pipeline">
+                  <li data-lab-stage="capture">CAPTURE</li>
+                  <li data-lab-stage="normalize">NORMALIZE</li>
+                  <li data-lab-stage="resample">RESAMPLE</li>
+                  <li data-lab-stage="compare">COMPARE</li>
+                  <li data-lab-stage="tier">TIER</li>
+                </ol>
+
+                <div class="lab-controls">
+                  <button id="lab-clear" type="button" disabled>CLEAR</button>
+                  <button id="lab-analyze" class="lab-primary-action" type="button" disabled>ANALYZE DRAWING</button>
+                  <button id="lab-reference" type="button" aria-pressed="true">SHOW REFERENCE</button>
+                </div>
+              </div>
+
+              <div class="lab-result" id="lab-result" data-tier="idle">
+                <div class="lab-result-readout" aria-live="polite" aria-atomic="true">
+                  <div class="lab-grade">
+                    <span>TIER</span>
+                    <strong id="lab-grade">—</strong>
+                  </div>
+                  <div class="lab-score">
+                    <span>GEOMETRIC MATCH</span>
+                    <strong id="lab-score">--</strong><small>/ 100</small>
+                  </div>
+                </div>
+
+                <div class="lab-weapon-formation" aria-hidden="true">
+                  <span class="lab-scan"></span>
+                  <svg viewBox="0 0 360 210" role="presentation">
+                    <path class="formation-path formation-main" pathLength="1" d="M48 66H264Q294 66 310 88Q292 111 257 115H214L198 170H137L153 114H48Z"></path>
+                    <path class="formation-path formation-detail" pathLength="1" d="M74 88H248M153 114Q168 133 198 126M264 66L287 79"></path>
+                    <path class="formation-crack" pathLength="1" d="M211 114L229 130L213 143L232 157"></path>
+                  </svg>
+                  <span class="lab-collapse-mark">INK COLLAPSE</span>
+                  <span class="lab-jam-risk">JAM RISK</span>
+                </div>
+
+                <div class="lab-result-copy" aria-live="polite" aria-atomic="true">
+                  <span id="lab-result-name">NO CREATION</span>
+                  <p id="lab-result-description">Draw the reference signal, then analyze the captured geometry.</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="lab-disclaimer">Simplified browser demonstration of the recognition pipeline used in SuperInk.</p>
           </div>
         </div>
       </section>
 
-      <section class="loop-section" aria-labelledby="loop-title">
+      <div class="continuous-project-surface">
+      <section class="combat-story" id="combat-story" aria-labelledby="combat-story-title">
+        <header class="story-intro">
+          <div class="section-label light"><span>04</span> From creation to capture</div>
+          <h2 id="combat-story-title">A mark only matters when it enters the fight.</h2>
+          <p>Scroll through the combat sequence.</p>
+        </header>
+
+        <div class="story-stack">
+          <div class="story-sticky">
+            <div class="story-status" aria-hidden="true">
+              <span>COMBAT SEQUENCE</span>
+              <strong><b>01</b> / 04</strong>
+              <i></i><i></i><i></i><i></i>
+            </div>
+
+            <article class="story-card" data-story-card>
+              <img src="./assets/weapon-manifest.png" alt="Concept visualization of a weapon forming from liquid ink beside a futuristic character.">
+              <div class="story-shade" aria-hidden="true"></div>
+              <div class="story-copy">
+                <span>01 — MANIFEST</span>
+                <h3>A DRAWING BECOMES FIREPOWER.</h3>
+                <p>Ink transforms a player-authored pattern into a temporary physical weapon. Drawing quality influences its stability, ammunition, and reliability—making mouse control visible through gameplay.</p>
+              </div>
+            </article>
+
+            <article class="story-card" data-story-card>
+              <img src="./assets/advance-to-objective.png" alt="Concept visualization of a futuristic character running toward an illuminated objective while carrying a calligraphy brush.">
+              <div class="story-shade" aria-hidden="true"></div>
+              <div class="story-copy">
+                <span>02 — ADVANCE</span>
+                <h3>CREATION ONLY MATTERS IF YOU CAN TAKE IT INTO THE FIGHT.</h3>
+                <p>After generating a weapon, the player must read the battlefield, manage distance, and decide when to push toward the objective.</p>
+              </div>
+            </article>
+
+            <article class="story-card" data-story-card>
+              <img src="./assets/slide-engage.png" alt="Concept visualization of a futuristic character sliding through a combat space toward a generated weapon.">
+              <div class="story-shade" aria-hidden="true"></div>
+              <div class="story-copy">
+                <span>03 — ENGAGE</span>
+                <h3>EXPRESSION DOES NOT REPLACE FPS MASTERY.</h3>
+                <p>Movement, aim, ammunition control, trigger discipline, and timing determine whether a self-created weapon can become a real combat advantage.</p>
+              </div>
+            </article>
+
+            <article class="story-card" data-story-card>
+              <img src="./assets/objective-inscribe.png" alt="Concept visualization of a futuristic calligrapher painting an illuminated objective structure.">
+              <div class="story-shade" aria-hidden="true"></div>
+              <div class="story-copy">
+                <span>04 — INSCRIBE</span>
+                <h3>OBJECTIVES ARE CAPTURED BY WRITING ON THEM.</h3>
+                <p>Instead of passively standing inside a capture zone, players expose themselves to draw directly onto the objective—turning positioning, protection, and teamwork into visible territorial control.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="loop-section" id="loop" aria-labelledby="loop-title">
         <div class="fps-section-hud tactical-hud" aria-hidden="true">
           <b>TACTICAL LOOP</b>
           <small>07 ACTION NODES / LIVE</small>
           <span><i></i><i></i><i></i></span>
         </div>
         <div>
-          <div class="section-label light"><span>04</span> Core loop</div>
+          <div class="section-label light"><span>03</span> Core loop</div>
           <h2 id="loop-title">Every stage returns control to the player.</h2>
         </div>
         <ol>
@@ -212,6 +337,7 @@
         </ol>
         <p>The drawing is theirs. The decision is theirs. The consequences are theirs.</p>
       </section>
+      </div>
 
       <section class="legacy-section" id="about" aria-labelledby="legacy-title">
         <div class="legacy-orbit" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
@@ -221,7 +347,7 @@
           <i></i>
         </div>
         <div class="legacy-content">
-          <div class="section-label"><span>05</span> Why I make games</div>
+          <div class="section-label"><span>06</span> Why I make games</div>
           <h2 id="legacy-title">I make games to create worlds that can outlive me—proof that I was here, and that I left something worth remembering.</h2>
           <div class="legacy-meta">
             <div class="profile-card">
@@ -276,5 +402,7 @@
     </footer>
 
     <script src="./script-superink-v11.js" defer></script>
+    <script src="./script-concept-story.js?v=20260727-surface" defer></script>
+    <script src="./script-recognition-lab.js" defer></script>
   </body>
 </html>
