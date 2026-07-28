@@ -1,5 +1,6 @@
 (() => {
-  // Reading order: gameplay proof first, then the six-part design narrative.
+  // Reading order: personal profile first, followed by the SuperInk project.
+  const main = document.querySelector("main");
   const hero = document.querySelector("#hero");
   const gameplay = document.querySelector("#proof");
   const intent = document.querySelector("#intent");
@@ -16,21 +17,25 @@
   }
 
   const readingOrder = [
+    legacy,
+    hero,
     gameplay,
     intent,
     experience,
     projectSurface,
-    recognition,
-    legacy
+    recognition
   ].filter(Boolean);
 
-  let previousSection = hero;
-  readingOrder.forEach((section) => {
-    if (previousSection && previousSection.nextElementSibling !== section) {
-      previousSection.after(section);
-    }
-    previousSection = section;
-  });
+  if (main) {
+    readingOrder.forEach((section) => main.append(section));
+  }
+
+  if (legacy) {
+    legacy.classList.add("section-live");
+    legacy.querySelectorAll(".scroll-reveal").forEach((element) => {
+      element.classList.add("in-view");
+    });
+  }
 
   const storyStack = document.querySelector(".story-stack");
   const storyCards = [...document.querySelectorAll("[data-story-card]")];
