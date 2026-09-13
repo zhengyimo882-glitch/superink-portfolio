@@ -1,0 +1,21 @@
+[hidden] { display: none !important; }
+.project-selector { position: relative; z-index: 3; margin: 16px 0; padding: 12px 16px; border: 1px solid var(--line); border-radius: 22px; background: rgba(255,253,245,.94); text-align: left; }
+.project-selector-label { margin: 0 0 8px; font: 11px var(--mono); letter-spacing: .1em; color: var(--muted); }
+.project-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.project-options button { display: grid; gap: 4px; padding: 8px 16px; text-align: left; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 14px; cursor: pointer; }
+.project-options button[aria-pressed="true"] { background: var(--turquoise-deep); color: var(--cream); border-color: var(--turquoise-deep); box-shadow: inset 0 -4px 0 var(--yellow); }
+.project-options button span { font: 10px var(--mono); letter-spacing: .1em; }
+.project-options button strong { font-size: 24px; }
+.project-options button small { font-size: 12px; line-height: 1.5; }
+.project-options button:hover { border-color: var(--turquoise); }
+.project-selector button:focus-visible, .project-return:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+.project-selection-footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 8px; }
+.project-selection-footer p { margin: 0; font-size: 11px; color: var(--muted); }
+.project-continue, .project-return { padding: 8px 16px; border: 1px solid currentColor; border-radius: 999px; color: var(--ink); background: transparent; cursor: pointer; font-size: 12px; }
+@media (max-width: 650px) { .project-selector { padding: 12px; } .project-options button { padding: 10px; } .project-options button strong { font-size: 23px; } .project-options button span { font-size: 8px; } .project-selection-footer { align-items: center; gap: 8px; flex-wrap: wrap; } }
+
+/* The selector supplies the separation previously supplied by the profile card. */
+#about .project-selector + .legacy-meta { margin-top: 16px; }
+#about .project-continue { min-height: 44px; }
+/* Keep the portrait canvas within the opening section at intermediate widths. */
+@media (min-width: 651px) { #about { --portrait-top: -80px; } }
