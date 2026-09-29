@@ -1,7 +1,7 @@
 /* Reveal DOM text only: image pixels and embedded video content stay untouched. */
 (() => {
  const root=document.querySelector('#relic-project');if(!root)return;
- const areas=[root,document.querySelector('nav[aria-label="Primary navigation"]'),document.querySelector('.project-code'),document.querySelector('footer')].filter(Boolean);
+ const areas=[root,document.querySelector('.site-header nav'),document.querySelector('.project-code'),document.querySelector('footer')].filter(Boolean);
  const motion=matchMedia('(prefers-reduced-motion: reduce)');
  const io=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>{
   target.classList.toggle('rr-ink-visible',isIntersecting && document.body.classList.contains('viewing-relic'));

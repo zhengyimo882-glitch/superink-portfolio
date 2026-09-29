@@ -1,6 +1,7 @@
 /* One More Relic: local, illustrative states; no game-save or inventory simulation. */
 window.mountRelicProject = function(root) {
  const c=window.RELIC_CONFIG, reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const tr=window.siteI18n?.t ?? (value=>value);
  const esc=s=>String(s).replace(/[&<>"']/g,k=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[k]));
  const asset=k=>'./assets/relic/'+c.assets[k].file;
  const img=(k,priority=false)=>`<img src="${asset(k)}" alt="${esc(c.assets[k].alt)}" width="1280" height="720" loading="${priority?'eager':'lazy'}" ${priority?'fetchpriority="high"':''} decoding="async">`;
@@ -25,17 +26,17 @@ window.mountRelicProject = function(root) {
  function pulse(el){el.classList.remove('rr-pulse');void el.offsetWidth;el.classList.add('rr-pulse');}
  // State transitions keep the original image visible until its replacement is decoded.
  const revisions=new WeakMap();
- async function setImage(container,key){const rev=(revisions.get(container)||0)+1;revisions.set(container,rev);const next=new Image();next.src=asset(key);try{await next.decode();}catch{return;}if(revisions.get(container)!==rev)return;const image=container.querySelector('img');image.src=next.src;image.alt=c.assets[key].alt;pulse(container);}
+ async function setImage(container,key){const rev=(revisions.get(container)||0)+1;revisions.set(container,rev);const next=new Image();next.src=asset(key);try{await next.decode();}catch{return;}if(revisions.get(container)!==rev)return;const image=container.querySelector('img');image.src=next.src;image.alt=tr(c.assets[key].alt);pulse(container);}
  const inspect=q('.rr-inspect');
  inspect.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||reduced.matches)return;const b=inspect.querySelector('img').getBoundingClientRect();inspect.style.setProperty('--light-x',((e.clientX-b.left)/b.width*100)+'%');inspect.style.setProperty('--light-y',((e.clientY-b.top)/b.height*100)+'%');});
- function detail(index){const h=c.hotspots[index];q('#rr-detail').hidden=false;q('[data-detail-copy]').textContent=h.text;q('.rr-crop').style.backgroundImage=`url("${asset('tomb')}")`;q('.rr-crop').style.backgroundPosition=`${h.x}% ${h.y}%`;all('[data-hotspot]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.hotspot)===index)));inspect.style.setProperty('--light-x',h.x+'%');inspect.style.setProperty('--light-y',h.y+'%');}
+ function detail(index){const h=c.hotspots[index];q('#rr-detail').hidden=false;q('[data-detail-copy]').textContent=tr(h.text);q('.rr-crop').style.backgroundImage=`url("${asset('tomb')}")`;q('.rr-crop').style.backgroundPosition=`${h.x}% ${h.y}%`;all('[data-hotspot]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.hotspot)===index)));inspect.style.setProperty('--light-x',h.x+'%');inspect.style.setProperty('--light-y',h.y+'%');}
  all('[data-hotspot]').forEach(b=>{b.addEventListener('click',()=>detail(Number(b.dataset.hotspot)));b.addEventListener('focus',()=>detail(Number(b.dataset.hotspot)));});
  q('[data-close-detail]').addEventListener('click',()=>{q('#rr-detail').hidden=true;all('[data-hotspot]').forEach(b=>b.setAttribute('aria-pressed','false'));q('[data-light]').focus();});
  q('[data-light]').addEventListener('click',e=>{const active=inspect.classList.toggle('rr-light-open');e.currentTarget.setAttribute('aria-pressed',String(active));});
- const choiceScenes=[['choiceCarry','01 / Take the book'],['choiceExplore','02 / A little deeper'],['choiceReturn','03 / Back to the shop']];
+ const choiceScenes=[['choiceCarry',tr('01 / Take the book')],['choiceExplore',tr('02 / A little deeper')],['choiceReturn',tr('03 / Back to the shop')]];
  let choiceIndex=0;
  q('[data-choice-next]').addEventListener('click',()=>{choiceIndex=(choiceIndex+1)%choiceScenes.length;const [key,label]=choiceScenes[choiceIndex];setImage(q('.rr-choice-stage'),key);q('[data-choice-status]').textContent=label;q('.rr-choice').classList.toggle('is-warm',choiceIndex===2);});
- all('[data-stage]').forEach(b=>b.addEventListener('click',()=>{const key=b.dataset.stage;all('[data-stage]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));setImage(q('.rr-shop-stage'),key);q('[data-stage-caption]').innerHTML=`Gameplay screenshot <span>${esc(c.assets[key].caption)}</span>`;q('[data-magnify]').hidden=key!=='examine';q('[data-magnify]').setAttribute('aria-pressed','false');q('.rr-magnifier').hidden=true;}));
+ all('[data-stage]').forEach(b=>b.addEventListener('click',()=>{const key=b.dataset.stage;all('[data-stage]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));setImage(q('.rr-shop-stage'),key);q('[data-stage-caption]').innerHTML=`${tr('Gameplay screenshot')} <span>${esc(tr(c.assets[key].caption))}</span>`;q('[data-magnify]').hidden=key!=='examine';q('[data-magnify]').setAttribute('aria-pressed','false');q('.rr-magnifier').hidden=true;}));
  q('.rr-magnifier').style.backgroundImage=`url("${asset('examine')}")`;
  q('[data-magnify]').addEventListener('click',e=>{const lens=q('.rr-magnifier');lens.hidden=!lens.hidden;e.currentTarget.setAttribute('aria-pressed',String(!lens.hidden));});
  let videoId='';try{const u=new URL(c.links.youtubeUrl);if(u.protocol==='https:'){if(u.hostname==='youtu.be')videoId=u.pathname.slice(1);if(['www.youtube.com','youtube.com'].includes(u.hostname))videoId=u.searchParams.get('v')||'';}}catch{}
