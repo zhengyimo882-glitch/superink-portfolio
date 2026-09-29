@@ -1,5 +1,5 @@
 /* Translucent controls use the same glass language across both projects. */
-:where(.reset-ink, .video-play, .lab-controls button, .project-options button, .project-continue) {
+:is(.reset-ink, .video-play, .lab-controls button, .project-options button, .project-continue) {
   border-color: rgba(255, 255, 255, .72);
   background-color: rgba(255, 255, 255, .48);
   background-image: linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(255, 255, 255, .32) 48%, rgba(11, 155, 145, .12));
@@ -8,7 +8,7 @@
   backdrop-filter: blur(20px) saturate(175%);
 }
 
-:where(.reset-ink, .video-play, .lab-controls button, .project-options button, .project-continue):hover:not(:disabled) {
+:is(.reset-ink, .video-play, .lab-controls button, .project-options button, .project-continue):hover:not(:disabled) {
   border-color: rgba(11, 155, 145, .48);
   box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(11, 91, 84, .12), 0 14px 34px rgba(11, 91, 84, .18);
   filter: brightness(1.035) saturate(1.08);
@@ -61,7 +61,7 @@
   backdrop-filter: blur(24px) saturate(190%);
 }
 
-:where(.rr-button, .rr-text-button, .rr-stage, .rr-expand, .rr-gallery-footer button, .rr-hotspot) {
+:is(.rr-button, .rr-text-button, .rr-stage, .rr-expand, .rr-gallery-footer button, .rr-hotspot) {
   background-color: rgba(35, 43, 37, .5);
   background-image: linear-gradient(135deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .025) 52%, rgba(198, 161, 109, .09));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), inset 0 -1px 0 rgba(0, 0, 0, .24), 0 9px 24px rgba(0, 0, 0, .24);
@@ -70,14 +70,14 @@
   transition: background-color .22s ease, border-color .22s ease, box-shadow .22s ease, filter .22s ease, transform .22s ease;
 }
 
-:where(.rr-button, .rr-text-button, .rr-expand) { border-radius: 999px; }
+:is(.rr-button, .rr-text-button, .rr-expand) { border-radius: 999px; }
 .rr-text-button { padding-inline: 16px; border: 1px solid rgba(233, 227, 213, .25); }
 .rr-stage { border-radius: 14px 14px 0 0; padding-inline: 12px; }
 .rr-gallery-footer button { border: 1px solid rgba(233, 227, 213, .18); border-radius: 14px; }
 .rr-gallery-footer button[aria-pressed="true"] { border-color: rgba(216, 195, 151, .64); }
 .rr-hotspot { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 0 0 6px rgba(182, 189, 150, .08), 0 8px 22px rgba(0, 0, 0, .32); }
 
-:where(.rr-button, .rr-text-button, .rr-stage, .rr-expand, .rr-gallery-footer button, .rr-hotspot):hover:not(:disabled) {
+:is(.rr-button, .rr-text-button, .rr-stage, .rr-expand, .rr-gallery-footer button, .rr-hotspot):hover:not(:disabled) {
   border-color: rgba(216, 195, 151, .62);
   background-color: rgba(58, 69, 59, .66);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), inset 0 -1px 0 rgba(0, 0, 0, .2), 0 12px 30px rgba(0, 0, 0, .3);
@@ -105,5 +105,143 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .language-toggle, :where(.rr-button, .rr-text-button, .rr-stage, .rr-expand, .rr-gallery-footer button, .rr-hotspot) { transition: none; }
+  .language-toggle, :is(.rr-button, .rr-text-button, .rr-stage, .rr-expand, .rr-gallery-footer button, .rr-hotspot) { transition: none; }
+}
+
+/* Saturated panel glass. The second background layer is an independent transparent edge. */
+:is(
+  .site-header,
+  .intent-body blockquote,
+  .principle-grid article,
+  .loop-section li,
+  .project-selector,
+  .legacy-meta,
+  .resume-highlights article,
+  .recognition-lab,
+  .lab-status-bar,
+  .lab-result,
+  .lab-pipeline li
+) {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .72), rgba(217, 255, 248, .31) 56%, rgba(139, 232, 221, .18)) padding-box,
+    linear-gradient(130deg, rgba(255, 255, 255, .98), rgba(0, 205, 188, .58) 38%, rgba(81, 119, 255, .34) 68%, rgba(255, 255, 255, .72)) border-box;
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, .86),
+    inset 0 -12px 28px rgba(0, 160, 147, .08),
+    0 20px 52px rgba(0, 105, 96, .13),
+    0 4px 12px rgba(0, 123, 114, .08);
+  -webkit-backdrop-filter: blur(28px) saturate(215%);
+  backdrop-filter: blur(28px) saturate(215%);
+}
+
+.intent-body blockquote,
+.principle-grid article,
+.loop-section li,
+.legacy-meta,
+.resume-highlights article,
+.project-selector,
+.recognition-lab { box-shadow: inset 0 2px 1px rgba(255, 255, 255, .9), inset 0 -14px 30px rgba(0, 171, 157, .09), 0 24px 58px rgba(0, 105, 96, .14), 0 5px 14px rgba(0, 123, 114, .08); }
+
+.principle-grid article:hover,
+.loop-section li:hover,
+.resume-highlights article:hover {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .8), rgba(198, 255, 245, .4) 56%, rgba(94, 221, 207, .24)) padding-box,
+    linear-gradient(130deg, #fff, rgba(0, 218, 199, .78) 40%, rgba(83, 113, 255, .45) 70%, rgba(255, 255, 255, .82)) border-box;
+  box-shadow: inset 0 2px 1px #fff, inset 0 -15px 32px rgba(0, 171, 157, .12), 0 30px 72px rgba(0, 105, 96, .19);
+}
+
+.loop-section .fx-card.in-view:hover {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .8), rgba(198, 255, 245, .4) 56%, rgba(94, 221, 207, .24)) padding-box,
+    linear-gradient(130deg, #fff, rgba(0, 218, 199, .78) 40%, rgba(83, 113, 255, .45) 70%, rgba(255, 255, 255, .82)) border-box;
+}
+
+.ui-glyph {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .72), rgba(169, 248, 235, .38)) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, .96), rgba(0, 205, 188, .72), rgba(255, 224, 0, .62)) border-box;
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .82), inset 0 -7px 14px rgba(0, 160, 147, .11), 5px 7px 0 rgba(255, 224, 0, .68), 0 12px 26px rgba(0, 123, 114, .13);
+  -webkit-backdrop-filter: blur(18px) saturate(220%);
+  backdrop-filter: blur(18px) saturate(220%);
+}
+
+.video-frame {
+  border: 1px solid transparent;
+  background: linear-gradient(#143e3b, #143e3b) padding-box, linear-gradient(130deg, rgba(255, 255, 255, .9), rgba(0, 218, 199, .75), rgba(83, 113, 255, .48), rgba(255, 255, 255, .72)) border-box;
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .28), 0 32px 92px rgba(0, 86, 79, .25), 0 8px 22px rgba(0, 123, 114, .14);
+}
+
+.lab-canvas-shell {
+  border: 1px solid transparent;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0, 232, 213, .16), transparent 50%) padding-box,
+    linear-gradient(155deg, #031d21, #08373a 58%, #071d2a) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, .7), rgba(0, 230, 210, .82), rgba(77, 125, 255, .56), rgba(255, 255, 255, .45)) border-box;
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .14), inset 0 -18px 44px rgba(0, 0, 0, .28), 0 20px 48px rgba(0, 111, 102, .2);
+}
+
+.lab-status-bar,
+.lab-result,
+.lab-pipeline li { -webkit-backdrop-filter: blur(20px) saturate(205%); backdrop-filter: blur(20px) saturate(205%); }
+
+.lab-result[data-tier="a"] {
+  border-color: transparent;
+  background: radial-gradient(circle at 50% 38%, rgba(54, 143, 255, .25), transparent 46%) padding-box, linear-gradient(145deg, rgba(231, 255, 251, .82), rgba(176, 255, 242, .38)) padding-box, linear-gradient(130deg, #fff, rgba(0, 210, 194, .78), rgba(77, 125, 255, .52), rgba(255, 255, 255, .72)) border-box;
+}
+
+.lab-result[data-tier="b"] {
+  border-color: transparent;
+  background: radial-gradient(circle at 50% 38%, rgba(117, 91, 255, .22), transparent 46%) padding-box, linear-gradient(145deg, rgba(239, 253, 252, .84), rgba(185, 225, 255, .36)) padding-box, linear-gradient(130deg, #fff, rgba(66, 119, 232, .72), rgba(141, 98, 255, .5), rgba(255, 255, 255, .72)) border-box;
+}
+
+.lab-result[data-tier="c"] {
+  border-color: transparent;
+  background: radial-gradient(circle at 50% 38%, rgba(255, 155, 64, .26), transparent 46%) padding-box, linear-gradient(145deg, rgba(255, 252, 242, .86), rgba(255, 225, 193, .4)) padding-box, linear-gradient(130deg, #fff, rgba(242, 118, 44, .76), rgba(255, 193, 73, .52), rgba(255, 255, 255, .72)) border-box;
+}
+
+.lab-result[data-tier="d"] {
+  border-color: transparent;
+  background: radial-gradient(circle at 50% 48%, rgba(0, 111, 119, .22), transparent 46%) padding-box, linear-gradient(145deg, rgba(240, 249, 246, .84), rgba(164, 211, 203, .34)) padding-box, linear-gradient(130deg, #fff, rgba(68, 119, 112, .72), rgba(39, 78, 83, .48), rgba(255, 255, 255, .68)) border-box;
+}
+
+/* Dark project frames use a separate jade/amber edge over saturated ink glass. */
+:is(.rr-frame, .rr-detail, .rr-inspection-footer, .rr-choice-caption, .rr-gallery-footer) {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(145deg, rgba(23, 48, 37, .76), rgba(11, 25, 20, .66) 58%, rgba(64, 39, 24, .5)) padding-box,
+    linear-gradient(132deg, rgba(238, 245, 229, .5), rgba(94, 190, 151, .58) 38%, rgba(198, 161, 109, .62) 72%, rgba(255, 255, 255, .24)) border-box;
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .14), inset 0 -14px 30px rgba(0, 0, 0, .28), 0 24px 62px rgba(0, 0, 0, .38), 0 5px 16px rgba(48, 132, 98, .12);
+  -webkit-backdrop-filter: blur(24px) saturate(185%);
+  backdrop-filter: blur(24px) saturate(185%);
+}
+
+.rr-frame { border-radius: 22px; overflow: hidden; }
+.rr-frame figcaption,
+.rr-choice-caption {
+  border-top: 1px solid rgba(173, 222, 197, .2);
+  background: linear-gradient(110deg, rgba(25, 57, 42, .8), rgba(15, 30, 24, .7) 62%, rgba(100, 61, 34, .42));
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  backdrop-filter: blur(20px) saturate(190%);
+}
+
+.rr-detail,
+.rr-inspection-footer,
+.rr-gallery-footer { border-radius: 16px; padding-inline: 16px; }
+
+.rr-art-stack {
+  border: 1px solid transparent;
+  border-radius: 22px;
+  background: linear-gradient(#090c0a, #090c0a) padding-box, linear-gradient(132deg, rgba(238, 245, 229, .52), rgba(94, 190, 151, .58), rgba(198, 161, 109, .66), rgba(255, 255, 255, .22)) border-box;
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .12), 0 28px 76px rgba(0, 0, 0, .46), 0 6px 18px rgba(48, 132, 98, .12);
+}
+
+@media (max-width: 650px) {
+  :is(.intent-body blockquote, .principle-grid article, .loop-section li, .project-selector, .legacy-meta, .resume-highlights article, .recognition-lab) {
+    -webkit-backdrop-filter: blur(22px) saturate(195%);
+    backdrop-filter: blur(22px) saturate(195%);
+  }
+  .rr-frame { border-radius: 16px; }
 }
