@@ -11,13 +11,15 @@ window.mountRelicGallery = function(root) {
  const track=section.querySelector('.rr-gallery-track'),sticky=section.querySelector('.rr-gallery-sticky'),cards=[...section.querySelectorAll('.rr-art-card')],buttons=[...section.querySelectorAll('[data-art-jump]')];
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');let frame=0,visible=false,active=-1;
  const clamp=x=>Math.max(0,Math.min(1,x));
+ // Each image rests for 75% of its scroll interval; only the final 25% transitions.
+ const hold=.75, span=items.length;
  function draw(){frame=0;if(root.hidden)return;
   if(reduced.matches){cards.forEach(card=>{card.removeAttribute('style');card.removeAttribute('aria-hidden');});return;}
   const top=parseFloat(getComputedStyle(sticky).top)||0;
   const distance=Math.max(1,track.offsetHeight-sticky.offsetHeight);
-  const progress=clamp((top-track.getBoundingClientRect().top)/distance)*3.35;
+  const progress=clamp((top-track.getBoundingClientRect().top)/distance)*span;
   cards.forEach((card,i)=>{
-   const t=i===0?1:clamp((progress-(i-1)-.18)/.75),ease=t*t*(3-2*t),past=clamp(progress-i);
+   const t=i===0?1:clamp((progress-(i-1)-hold)/(1-hold)),ease=t*t*(3-2*t),past=clamp((progress-i-hold)/(1-hold));
    card.style.zIndex=String(i+1);card.style.opacity=String(i===3?ease:1);
    card.style.filter=`brightness(${1-past*.35})`;
    if(i===0)card.style.transform=`scale(${1-past*.06}) translateY(${-past*10}px)`;
@@ -25,7 +27,7 @@ window.mountRelicGallery = function(root) {
    if(i===2){card.style.clipPath=`inset(0 ${(1-ease)*100}% 0 0)`;card.style.transform=`translateX(${(1-ease)*7}%) scale(${1-past*.035})`;}
    if(i===3)card.style.transform=`scale(${1.15-ease*.15}) translateY(${(1-ease)*20}px)`;
   });
-  const index=Math.min(3,Math.max(0,Math.floor(progress+.07)));
+  const index=Math.min(items.length-1,Math.max(0,Math.floor(progress)));
   if(index!==active){active=index;section.dataset.active=String(index);section.querySelector('[data-art-caption]').textContent=`0${index+1} / ${items[index].title}`;cards.forEach((c,i)=>{c.setAttribute('aria-hidden',String(i!==index));c.classList.toggle('rr-art-current',i===index);});buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));}
   const current=cards[index];if(current.querySelector('.rr-art-narration').getBoundingClientRect().top<innerHeight*.9)current.classList.add('rr-reveal-ready');
   cards.forEach((c,i)=>{if(i!==index)c.classList.remove('rr-reveal-ready');});
@@ -35,9 +37,9 @@ window.mountRelicGallery = function(root) {
  window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule,{passive:true});reduced.addEventListener('change',()=>{active=-1;draw();});
  root.addEventListener('project-visibility',e=>{if(e.detail.visible)schedule();else if(frame){cancelAnimationFrame(frame);frame=0;}});
  buttons.forEach((button,i)=>button.addEventListener('click',()=>{
-  if(i===active){const card=cards[i];card.classList.remove('rr-art-current');void card.offsetWidth;card.classList.add('rr-art-current');}
+  // Jump into the reading interval without replaying the caption entrance.
   const top=parseFloat(getComputedStyle(sticky).top)||0;
-  window.scrollTo({top:scrollY+track.getBoundingClientRect().top-top+(i/3.35)*(track.offsetHeight-sticky.offsetHeight),behavior:reduced.matches?'instant':'smooth'});
+  window.scrollTo({top:scrollY+track.getBoundingClientRect().top-top+((i+hold/2)/span)*(track.offsetHeight-sticky.offsetHeight),behavior:reduced.matches?'instant':'smooth'});
  }));
  draw();
 };
