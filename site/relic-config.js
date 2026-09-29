@@ -15,12 +15,12 @@ window.RELIC_CONFIG = {
   cellar:{file:'gameplay-cellar.png',alt:'Hidden cellar illuminated by the player’s flashlight, with a return portal.',caption:'Beyond the main chamber'},
   departure:{file:'gameplay-departure.png',alt:'Actual departure confirmation showing the carried book and the option to stay.',caption:'Departure confirmation'},
   shop:{file:'gameplay-shop.png',alt:'Antique shop with wooden display cabinets, a cleaning bench and objects awaiting inspection.',caption:'Back above ground'},
-  clean:{file:'gameplay-cleaning.png',alt:'Open thread-bound book on the cleaning bench with brush, pick and cloth tools.',caption:'Clean / Thread-bound book'},
-  examine:{file:'gameplay-evidence.png',alt:'The blue cover of the same thread-bound book under adjustable inspection light.',caption:'Examine / The same book'},
-  decide:{file:'gameplay-disposition.png',alt:'Disposition menu for a ritual copper coin with sale, display, research and collateral options.',caption:'Decide / A different object: a ritual copper coin'}
+  clean:{file:'gameplay-cleaning-en.png',alt:'Open thread-bound book on the cleaning bench with brush, pick and cloth tools.',caption:'Clean / Thread-bound book'},
+  examine:{file:'gameplay-inspection-en.png',alt:'English inspection interface showing the open pages of the thread-bound book under adjustable side lighting.',caption:'Examine / Paper fibres under side lighting'},
+  record:{file:'gameplay-observations-en.png',alt:'English observations notebook recording the folded map seam found along the spine of the same thread-bound book.',caption:'Record evidence / Folded map seam'}
  },
  hotspots:[{x:43,y:25,label:'Ritual candle',text:'A candle beside the passage.'},{x:50,y:56,label:'Central coffin',text:'A coffin at the center of the chamber.'}],
- stages:[{key:'clean',label:'Clean'},{key:'examine',label:'Examine'},{key:'decide',label:'Decide'}]
+ stages:[{key:'clean',label:'Clean'},{key:'examine',label:'Examine'},{key:'record',label:'Record evidence'}]
 };
 // Generated specifically for the choice section; never label these as gameplay.
 Object.assign(window.RELIC_CONFIG.assets, {
