@@ -15,27 +15,30 @@
 }
 
 .project-options button[aria-pressed="true"] {
-  border-color: rgba(255, 255, 255, .4);
-  background-color: rgba(0, 91, 84, .88);
-  background-image: linear-gradient(135deg, rgba(255, 255, 255, .2), transparent 44%, rgba(255, 224, 0, .12));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 -4px 0 var(--yellow), 0 12px 30px rgba(0, 91, 84, .2);
+  border-color: rgba(255, 255, 255, .62);
+  background-color: rgba(0, 91, 84, .72);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .24), transparent 28%), linear-gradient(135deg, rgba(255, 255, 255, .16), transparent 48%, rgba(0, 218, 199, .16));
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .42), inset 0 -7px 10px rgba(0, 49, 45, .22), inset 0 -4px 0 var(--yellow), 0 15px 34px rgba(0, 91, 84, .24);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  backdrop-filter: blur(26px) saturate(190%);
 }
 
 .language-toggle {
-  min-width: 58px;
-  min-height: 36px;
-  padding: 9px 14px;
-  border: 1px solid rgba(255, 255, 255, .78);
+  min-width: 62px;
+  min-height: 40px;
+  padding: 10px 15px;
+  border: 1.5px solid rgba(255, 255, 255, .82);
   border-radius: 999px;
-  background-color: rgba(0, 123, 114, .9);
-  background-image: linear-gradient(135deg, rgba(255, 255, 255, .32), transparent 42%, rgba(0, 218, 199, .32));
+  background-color: rgba(0, 123, 114, .66);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .42), transparent 34%), linear-gradient(135deg, rgba(255, 255, 255, .22), transparent 46%, rgba(0, 218, 199, .32));
   color: #fff;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .06em;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .58), inset 0 -1px 0 rgba(0, 65, 60, .35), 0 7px 18px rgba(0, 123, 114, .28), 0 0 0 1px rgba(0, 123, 114, .14);
-  -webkit-backdrop-filter: blur(22px) saturate(185%);
-  backdrop-filter: blur(22px) saturate(185%);
+  text-shadow: 0 1px 2px rgba(0, 55, 50, .36);
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .68), inset 0 -6px 9px rgba(0, 65, 60, .3), inset 0 0 0 1px rgba(0, 218, 199, .2), 0 9px 22px rgba(0, 123, 114, .3), 0 2px 5px rgba(0, 74, 68, .22);
+  -webkit-backdrop-filter: blur(28px) saturate(205%);
+  backdrop-filter: blur(28px) saturate(205%);
   transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
 }
 
@@ -43,11 +46,20 @@
   color: #fff;
   transform: translateY(-1px) scale(1.035);
   filter: brightness(1.1) saturate(1.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7), inset 0 -1px 0 rgba(0, 65, 60, .28), 0 10px 24px rgba(0, 123, 114, .38), 0 0 0 3px rgba(11, 155, 145, .1);
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .8), inset 0 -7px 10px rgba(0, 65, 60, .25), inset 0 0 0 1px rgba(0, 218, 199, .28), 0 14px 30px rgba(0, 123, 114, .4), 0 3px 7px rgba(0, 74, 68, .2);
 }
 
 .language-toggle:active { transform: translateY(0) scale(.97); }
 .language-toggle:focus-visible { outline: 3px solid rgba(255, 122, 46, .62); outline-offset: 3px; }
+
+.lab-controls .lab-primary-action {
+  border-color: rgba(255, 255, 255, .62);
+  background-color: rgba(0, 123, 114, .68);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .34), transparent 34%), linear-gradient(120deg, rgba(0, 123, 114, .78), rgba(11, 155, 145, .64), rgba(83, 113, 255, .42));
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .52), inset 0 -6px 9px rgba(0, 65, 60, .24), 0 12px 28px rgba(0, 123, 114, .25);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
+}
 
 :where(.rr-button, .rr-text-button, .rr-stage, .rr-expand, .rr-gallery-footer button, .rr-hotspot) {
   background-color: rgba(35, 43, 37, .5);
@@ -89,7 +101,7 @@
 
 @media (max-width: 650px) {
   .project-code { gap: 8px; }
-  .language-toggle { min-width: 54px; min-height: 34px; padding: 8px 12px; font-size: 10px; }
+  .language-toggle { min-width: 58px; min-height: 38px; padding: 9px 13px; font-size: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
