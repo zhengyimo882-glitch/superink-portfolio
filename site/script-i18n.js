@@ -7,8 +7,8 @@
     'Creation ink': '创造墨量', 'Player input detected / move to create': '已检测到玩家输入 / 移动鼠标开始创作',
     '07 ACTION NODES / LIVE': '07 动作节点 / 实时', 'DESIGNER SIGNAL': '设计者信号', 'Focus': '专注度', 'Tools': '工具',
     'INK AMMO': '墨弹药', 'INK COLLAPSE': '墨迹崩解', 'INK-04 / STABLE': '墨迹-04 / 稳定', 'JAM RISK': '卡壳风险',
-    'LOCKED / YIMO ZHENG': '已锁定 / 郑一墨', 'RANGE 12.4M · TRACKING': '距离 12.4 米 · 追踪中', 'RANGE 18.7M': '距离 18.7 米',
-    'REC': '录制', 'TACTICAL LOOP': '战术循环', 'TARGET / CREATION': '目标 / 创造', 'PLAYBACK / 01': '回放 / 01', 'Yimo Zheng': '郑一墨',
+    'LOCKED / YIMO ZHENG': '已锁定 / 郑以墨', 'RANGE 12.4M · TRACKING': '距离 12.4 米 · 追踪中', 'RANGE 18.7M': '距离 18.7 米',
+    'REC': '录制', 'TACTICAL LOOP': '战术循环', 'TARGET / CREATION': '目标 / 创造', 'PLAYBACK / 01': '回放 / 01', 'Yimo Zheng': '郑以墨',
     'SuperInk is a systemic FPS prototype where player-designed drawings become temporary combat objects.': 'SuperInk 是一款系统驱动的第一人称射击原型，玩家亲手绘制的图形会化为限时存在的战斗实体。',
     'Draw the weapon.': '绘制武器。', 'Shape the fight.': '塑造战局。', '01 / MOVE YOUR MOUSE': '01 / 移动鼠标',
     '02 / FORMING SUPERINK': '02 / SuperInk 正在成形', '03 / CREATION COMPLETE': '03 / 创造完成',
@@ -69,7 +69,7 @@
     'Up next: SuperInk · Scroll to explore': '接下来：SuperInk · 向下滚动探索', 'Up next: One More Relic · Scroll to explore': '接下来：《见好不收》· 向下滚动探索',
     'Explore project ↓': '探索项目 ↓', 'ONE MORE RELIC / 02': '见好不收 / 02', 'Overview': '概览', 'Explore': '探索', 'The Choice': '抉择', 'The Shop': '古玩店',
     'One More Relic / 2D game prototype': '《见好不收》/ 2D 游戏原型',
-    'AN EXPLORATION GAME BY YIMO ZHENG': '郑一墨创作的探索游戏', 'ONE MORE RELIC': '见好不收', 'ONE MORE': '见好', 'RELIC': '不收',
+    'AN EXPLORATION GAME BY YIMO ZHENG': '郑以墨创作的探索游戏', 'ONE MORE RELIC': '见好不收', 'ONE MORE': '见好', 'RELIC': '不收',
     '“You could leave now. But what about one more relic?”': '“现在就能离开。可要是再拿一件呢？”',
     'Tomb exploration. Relic appraisal. The temptation to stay.': '探索古墓，鉴定古物，抵抗继续深入的诱惑。', 'Play Demo ↗': '在线试玩 ↗', 'Watch Gameplay': '观看玩法演示',
     'One trip. One more temptation.': '一次下墓，再多一次诱惑。', 'Watch on YouTube ↗': '在 YouTube 观看 ↗',
@@ -102,7 +102,7 @@
     'Primary navigation': '主导航', 'Choose a project': '选择项目', 'Antique shop stages': '古玩店流程', 'Gameplay video': '玩法视频', 'Choose artwork': '选择美术作品',
     'Play SuperInk gameplay demo': '播放 SuperInk 玩法演示', 'Play One More Relic gameplay video': '播放《见好不收》玩法视频',
     'Draw a pattern for geometric weapon recognition': '绘制图案以进行几何武器识别', 'Recognition pipeline': '识别流程', 'Selected resume highlights': '精选履历',
-    'Yimo Zheng, home': '郑一墨，主页', 'Portrait of Yimo Zheng': '郑一墨肖像',
+    'Yimo Zheng, home': '郑以墨，主页', 'Portrait of Yimo Zheng': '郑以墨肖像',
     'SuperInk gameplay demo thumbnail': 'SuperInk 玩法演示缩略图', 'One More Relic — YouTube video thumbnail': '《见好不收》YouTube 视频缩略图',
     'Main tomb chamber with ritual candles, a central coffin and the exploration interface.': '主墓室场景，包含仪式蜡烛、中央棺椁与探索界面。',
     'Hidden cellar illuminated by the player’s flashlight, with a return portal.': '玩家用手电照亮隐藏地窖，返程传送门位于其中。',
@@ -120,7 +120,7 @@
     'An antique displayed on a shop counter facing the protagonist.': '一件古物陈列在店铺柜台上，与主角相对。', 'The protagonist holding a lantern beside an open vessel in a tomb.': '主角提着灯笼，站在墓中一件开启的器物旁。',
     'SuperInk — Draw the weapon. Shape the fight.': 'SuperInk — 绘制武器，塑造战局',
     'SuperInk — a systemic FPS prototype where player-designed drawings become temporary combat objects.': 'SuperInk——一款系统驱动的第一人称射击原型，玩家绘制的图形会化为限时存在的战斗实体。',
-    'Yimo Zheng — One More Relic': '郑一墨 — 见好不收'
+    'Yimo Zheng — One More Relic': '郑以墨 — 见好不收'
   };
 
   const t = (value) => language === 'zh-CN' ? (zh[value] ?? value) : value;
