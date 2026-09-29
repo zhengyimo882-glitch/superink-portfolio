@@ -83,7 +83,7 @@ button, input { font: inherit; }
 .site-header nav a:hover { color: var(--turquoise-dark); }
 .site-header nav a:hover::after { opacity: 1; transform: translate(-50%,0); }
 .project-code { justify-self: end; color: var(--turquoise-dark); display:flex;align-items:center;gap:10px; }
-.language-toggle{min-width:38px;padding:5px 0 5px 10px;border:0;border-left:1px solid rgba(11,155,145,.3);background:transparent;color:inherit;font:600 8px/1.2 var(--mono);letter-spacing:.04em;cursor:pointer}
+.language-toggle{min-width:46px;min-height:30px;padding:7px 2px 7px 12px;border:0;border-left:1px solid rgba(11,155,145,.3);background:transparent;color:inherit;font:600 10px/1.2 var(--mono);letter-spacing:.04em;cursor:pointer}
 .language-toggle:hover{color:var(--orange)}
 
 .hero {
