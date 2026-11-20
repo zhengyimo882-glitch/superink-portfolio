@@ -18,10 +18,22 @@
   const relic = document.createElement('div');
   relic.id = 'relic-project';
   relic.hidden = true;
-  main.append(relic);
+  main.append(relic, profile);
   window.mountRelicProject(relic);
   window.siteI18n?.translate(relic);
   const nav = document.querySelector('.site-header nav');
+  const switcher = document.createElement('button');
+  switcher.className = 'studio-switch';
+  switcher.type = 'button';
+  document.querySelector('.project-code').prepend(switcher);
+  const syncSwitcher = game => {
+    switcher.textContent = game === 'relic' ? 'SuperInk ↗' : 'One More Relic ↗';
+  };
+  syncSwitcher('superink');
+  switcher.addEventListener('click', () => {
+    selectGame(selected === 'relic' ? 'superink' : 'relic');
+    scrollTo(selected === 'relic' ? relic : document.querySelector('#ink-studio'));
+  });
   const originalNav = nav.innerHTML;
   const footerCopy = document.querySelector('footer p');
   const originalFooter = footerCopy.textContent;
@@ -33,6 +45,7 @@
 
   function selectGame(game) {
     selected = game;
+    syncSwitcher(game);
     sessionStorage.setItem('portfolio-project', game);
     const isRelic = game === 'relic';
     superinkSections.forEach(section => { section.hidden = isRelic; });
@@ -61,7 +74,7 @@
   }
   selector.querySelectorAll('[data-game]').forEach(button => button.addEventListener('click', () => selectGame(button.dataset.game)));
   const scrollTo = node => node.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
-  selector.querySelector('.project-continue').addEventListener('click', () => scrollTo(selected === 'relic' ? relic : document.querySelector('#hero')));
+  selector.querySelector('.project-continue').addEventListener('click', () => scrollTo(selected === 'relic' ? relic : document.querySelector('#ink-studio')));
   relic.querySelector('.project-return').addEventListener('click', () => { scrollTo(selector); selector.querySelector(`[data-game="${selected}"]`).focus({ preventScroll: true }); });
   if (location.hash.startsWith('#relic-')) {
     selectGame('relic');

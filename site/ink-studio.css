@@ -1,0 +1,25 @@
+#ink-studio { position:relative; height:235vh; height:235svh; background:#092b30; color:#dcfff6; }
+#ink-studio[hidden] { display:none; }
+.studio-pin { height:100vh; height:100svh; position:sticky; top:0; overflow:hidden; isolation:isolate; background:radial-gradient(ellipse at 65% 60%,#196060 0%,transparent 50%),linear-gradient(135deg,#031c23,#0e4145); }
+.studio-pin::before { content:""; position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(#97ffe716 1px,transparent 1px),linear-gradient(90deg,#97ffe716 1px,transparent 1px); background-size:40px 40px; mask-image:linear-gradient(145deg,#000,transparent 88%); }
+.studio-heading { position:absolute; top:max(100px,15%); left:7%; z-index:1; pointer-events:none; }
+.studio-heading h1 { margin:0; font-size:clamp(40px,6vw,90px); line-height:1; letter-spacing:-.07em; color:#dcfff6; }
+.studio-heading p { font:500 clamp(14px,1.4vw,20px)/1.5 system-ui; max-width: min(85vw,600px); color:#a6e9dd; }
+.studio-canvas { position:absolute; left:4%; top:34%; width:92%; height:49%; cursor:crosshair; touch-action:none; }
+.studio-canvas.model-ready { cursor:grab; }
+.studio-canvas.model-ready:active { cursor:grabbing; }
+.studio-controls { position:absolute; bottom:6%; left:7%; display:flex; gap:.65rem; }
+.studio-controls button,.studio-switch { border:1px solid #7de0c780; padding:.65em 1em; border-radius:2rem; background:#103e41cc; color:#dcfff6; backdrop-filter:blur(12px); cursor:pointer; font:600 13px/1.3 system-ui; }
+.studio-switch { font-size:11px; white-space:nowrap; }
+.site-header .project-code { display:flex; align-items:center; gap:6px; }
+.site-header .project-code [data-project-code] { display:none; }
+@media(max-width:650px){.site-header .studio-switch {padding:6px;font-size:10px;} .studio-heading{top:18%} }
+@media(prefers-reduced-motion:reduce){#ink-studio{height:145svh}}
+body:not(.viewing-relic) {
+  --cream:#effcf8; --cream-warm:#dbf3ee; --yellow:#73e6cf; --orange:#137f7d;
+  background:linear-gradient(175deg,#092b30,#e6f9f3 20%,#c5ebe4 65%,#eefaf6);
+}
+body:not(.viewing-relic) .site-header { backdrop-filter:blur(20px) saturate(135%); }
+
+main > #ink-studio { overflow:visible; }
+main > #ink-studio::before, main > #ink-studio::after { content:none; }

@@ -13,6 +13,7 @@
       <link rel="stylesheet" href="./styles-project-selector.css?v=20260908-compact">
   <link rel="stylesheet" href="./styles-relic-showcase.css?v=gallery-reading-18">
   <link rel="stylesheet" href="./styles-liquid-glass.css?v=glass-03">
+    <link rel="stylesheet" href="./ink-studio.css">
   </head>
   <body>
     <div class="cursor" aria-hidden="true"><i></i></div>
@@ -34,6 +35,13 @@
     </header>
 
     <main>
+      <section id="ink-studio" aria-labelledby="studio-title">
+        <div class="studio-pin">
+          <div class="studio-heading"><h1 id="studio-title">SuperInk</h1><p data-studio-hint></p></div>
+          <canvas class="studio-canvas" tabindex="0" aria-label="SuperInk drawing and model viewer"></canvas>
+          <div class="studio-controls"><button type="button" data-studio-reset>Redraw</button><button type="button" data-studio-next>Preview model ↓</button></div>
+        </div>
+      </section>
       <section class="hero" id="hero" aria-labelledby="hero-title">
         <canvas id="brush-canvas" aria-hidden="true"></canvas>
         <div class="paper-grain" aria-hidden="true"></div>
@@ -404,7 +412,7 @@
       <div><span class="seal small" aria-hidden="true">YZ</span><strong>Yimo Zheng</strong></div>
       <p>Systemic FPS prototype / Unity 6 / Solo developer</p>
       <a href="https://github.com/zhengyimo882-glitch" target="_blank" rel="noreferrer">GitHub ↗</a>
-      <a href="#about">Back to profile ↑</a>
+      <a href="#about">Back to profile</a>
     </footer>
 
     <script src="./vendor/gsap-3.13.0/gsap.min.js" defer></script>
@@ -415,7 +423,8 @@
     <script src="./script-recognition-lab.js" defer></script>
       <script src="./relic-config.js?v=shop-en-17" defer></script>
     <script src="./script-relic-gallery.js?v=bilingual-01" defer></script><script src="./script-relic.js?v=bilingual-01" defer></script>
-    <script src="./script-project-selector.js?v=bilingual-01" defer></script>
+    <script src="./script-project-selector.js?v=studio-1" defer></script>
     <script src="./script-relic-text.js?v=bilingual-01" defer></script>
+    <script src="./ink-studio.js" defer></script>
   </body>
 </html>
