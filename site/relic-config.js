@@ -24,9 +24,9 @@ window.RELIC_CONFIG = {
 };
 // Generated specifically for the choice section; never label these as gameplay.
 Object.assign(window.RELIC_CONFIG.assets, {
- choiceCarry:{file:'choice-carry-art.png',alt:'AI promotional illustration of a worn blue thread-bound book in a satchel on a tomb ledge.',caption:'The choice'},
- choiceExplore:{file:'choice-explore-art.png',alt:'AI promotional illustration of the book beside a deep stone tomb passage.',caption:'Further into the unknown'},
- choiceReturn:{file:'choice-return-art.png',alt:'AI promotional illustration of the book and satchel resting on a warmly lit antique-shop counter.',caption:'Back above ground'}
+ choiceCarry:{file:'choice-carry-art.png',alt:'Illustration of a worn blue thread-bound book in a satchel on a tomb ledge.',caption:'The choice'},
+ choiceExplore:{file:'choice-explore-art.png',alt:'Illustration of the book beside a deep stone tomb passage.',caption:'Further into the unknown'},
+ choiceReturn:{file:'choice-return-art.png',alt:'Illustration of the book and satchel resting on a warmly lit antique-shop counter.',caption:'Back above ground'}
 });
 // Supplied promotional illustrations, in the requested presentation order.
 window.RELIC_CONFIG.gallery = [
@@ -37,8 +37,8 @@ window.RELIC_CONFIG.gallery = [
 ];
 // Artwork narration: concise paraphrases of GDD v0.2 §§1.2, 6.1–6.3, 7.1 and 9.1.
 [
- {eyebrow:'THE OBJECT / GDD DESIGN',headline:'More than something to take.',body:'Financial pressure brings you to the antique shop. Below ground, an object’s place can matter as much as its value.'},
- {eyebrow:'THE EVIDENCE / GDD DESIGN',headline:'Every trace asks a question.',body:'Cleaning reveals patterns, material and damage. Appraisal follows the evidence—not a single click.'},
- {eyebrow:'THE SHOP / GDD DESIGN',headline:'Bringing it back is only the beginning.',body:'Sell, collect or keep researching. The shop is where discoveries become decisions about the next descent.'},
- {eyebrow:'THE TEMPTATION / GDD DESIGN',headline:'One more step into the unknown.',body:'Read the layout, the light and the placement of objects. The first tomb teaches these rules before later tombs open the full leave-or-stay dilemma.'}
+ {eyebrow:'THE OBJECT',headline:'More than something to take.',body:'Financial pressure brings you to the antique shop. Below ground, an object’s place can matter as much as its value.'},
+ {eyebrow:'THE EVIDENCE',headline:'Every trace asks a question.',body:'Cleaning reveals patterns, material and damage. Appraisal follows the evidence—not a single click.'},
+ {eyebrow:'THE SHOP',headline:'Bringing it back is only the beginning.',body:'Sell, collect or keep researching. The shop is where discoveries become decisions about the next descent.'},
+ {eyebrow:'THE TEMPTATION',headline:'One more step into the unknown.',body:'Read the layout, the light and the placement of objects. The first tomb teaches these rules before later tombs open the full leave-or-stay dilemma.'}
 ].forEach((text,i)=>Object.assign(window.RELIC_CONFIG.gallery[i],text));

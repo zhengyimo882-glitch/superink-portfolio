@@ -76,6 +76,7 @@
     storyCards.forEach((card, index) => {
       const distance = storyPosition - index;
       let yVh;
+      let xVw = 0;
       let depthZ;
       let scale;
       let rotateX;
@@ -84,14 +85,28 @@
       let opacity;
       let arrival = 1;
 
-      if (distance < 0) {
-        arrival = storyClamp(distance + 1, 0, 1);
-        yVh = (1 - arrival) * 92;
-        depthZ = -180 + arrival * 180;
-        scale = .88 + arrival * .12;
-        rotateX = (1 - arrival) * 19;
-        rotateY = (index % 2 ? -1 : 1) * (1 - arrival) * 9;
-        rotateZ = (index % 2 ? 1 : -1) * (1 - arrival) * 1.8;
+      if (distance < 0 || (index === 0 && stackBounds.top > 0)) {
+        arrival = index === 0
+          ? storyClamp(1 - stackBounds.top / (innerHeight * .9), 0, 1)
+          : storyClamp(distance + 1, 0, 1);
+        const ease = arrival * arrival * (3 - 2 * arrival);
+        const remaining = 1 - ease;
+        // Each image travels a distinct route through the same 3D space.
+        const routes = [
+          { x: 0, y: 12, z: -1500, rx: -12, ry: 0, rz: 0 },
+          { x: -48, y: 8, z: -850, rx: -7, ry: 42, rz: -6 },
+          { x: 12, y: 65, z: -1150, rx: 55, ry: -15, rz: -12 },
+          { x: 50, y: -14, z: -1250, rx: 10, ry: -44, rz: 8 }
+        ];
+        const route = routes[index % routes.length];
+        const compact = innerWidth < 650 ? .6 : 1;
+        xVw = route.x * remaining * compact;
+        yVh = route.y * remaining * compact;
+        depthZ = route.z * remaining;
+        scale = .8 + ease * .2;
+        rotateX = route.rx * remaining;
+        rotateY = route.ry * remaining;
+        rotateZ = route.rz * remaining;
         opacity = storyClamp((arrival - .06) / .28, 0, 1);
       } else {
         const depth = Math.min(distance, 3);
@@ -112,12 +127,23 @@
         ? String(20 + index)
         : String(10 - index);
       card.style.opacity = String(opacity);
-      card.style.transform = `translate3d(0,${yVh.toFixed(2)}vh,${depthZ.toFixed(1)}px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) rotateZ(${rotateZ.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+      card.style.transform = `translate3d(${xVw.toFixed(2)}vw,${yVh.toFixed(2)}vh,${depthZ.toFixed(1)}px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) rotateZ(${rotateZ.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+      const opening = storyClamp(arrival * 1.15, 0, 1);
+      const closed = (1 - opening) * 100;
+      const apertures = [
+        `inset(${(closed / 2).toFixed(2)}% 0%)`,
+        `inset(0% ${closed.toFixed(2)}% 0% 0%)`,
+        `circle(${(opening * 75).toFixed(2)}% at 50% 50%)`,
+        `inset(${closed.toFixed(2)}% 0% 0% 0%)`
+      ];
+      card.style.setProperty('--story-image-clip', opening >= .999 ? 'none' : apertures[index % 4]);
+      card.style.setProperty('--story-image-blur', `${((1 - opening) * 5).toFixed(2)}px`);
       card.style.setProperty("--story-flash", String(storyClamp(flash, 0, 1)));
       card.style.setProperty("--story-scan", `${(arrival * 470).toFixed(1)}%`);
       card.style.setProperty("--story-image-scale", String((1.065 - arrival * .03).toFixed(4)));
       card.style.setProperty("--story-pan", `${((index % 2 ? -1 : 1) * (1 - arrival) * 2.8).toFixed(2)}%`);
       card.style.setProperty("--story-copy-y", `${((1 - arrival) * 34).toFixed(1)}px`);
+      card.style.setProperty("--story-copy-tilt", `${((1 - arrival) * 20).toFixed(1)}deg`);
       card.style.setProperty("--story-copy-opacity", String(storyClamp((arrival - .18) / .42, 0, 1)));
       card.classList.toggle("story-active", index === activeIndex);
     });

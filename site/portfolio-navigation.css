@@ -1,0 +1,21 @@
+.site-header nav { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.site-header nav button { font:inherit; padding:9px 12px; border-radius:999px; cursor:pointer; color:inherit; background:transparent; border:1px solid currentColor; }
+.site-header nav button[aria-pressed="true"] { background:#214c49; color:#e4fff3; border-color:#9bd8c6; box-shadow:0 0 16px #82cdbc26; }
+.site-header .studio-switch { display:none; }
+.design-evidence { margin:0 auto 65px; padding:clamp(24px,4vw,48px); max-width:1120px; border:1px solid #9de4d366; border-radius:22px; background:linear-gradient(135deg,#203b49eb,#0c1927ed); color:#dbe8e8; box-shadow:0 24px 65px #0005,inset 0 1px 0 #c2eee82e; }
+.design-evidence h3 { font:600 clamp(26px,3.6vw,44px)/1.15 var(--display); color:#e2efec!important; margin:16px 0; letter-spacing:-.03em; }
+.design-evidence > p { font-size:15px; line-height:1.8; color:#b4c9cf; }
+.design-evidence .evidence-label { color:#adcdbc; font:10px/1.7 var(--mono); letter-spacing:.12em; }
+.evidence-options { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; }
+.evidence-options button { padding:12px 18px; min-height:44px; color:#c8dfd9; border:1px solid #a7d4cd50; background:#152d39; border-radius:8px; cursor:pointer; font:inherit; }
+.evidence-options button[aria-pressed="true"] { background:#28594f; border-color:#a4ead3; color:#effff4; }
+.evidence-options button:focus-visible,.site-header nav button:focus-visible { outline:2px solid #b8f2dd; outline-offset:4px; }
+.evidence-result { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border:1px solid #a7d4cd36; border-radius:12px; overflow:hidden; }
+.evidence-result > div { padding:24px; background:#90d5c708; }
+.evidence-result > div + div { border-left:1px solid #a7d4cd36; }
+.evidence-result span { color:#b4cdbd; font:10px/1.7 var(--mono); }
+.evidence-result p { color:#e0efea; font-size:17px; line-height:1.65; margin:14px 0 0; }
+.design-evidence .evidence-rationale { margin:25px 0; }
+.design-evidence small,.design-evidence .evidence-note { color:#a2b8c1; font-size:11px; line-height:1.8; }
+@media(max-width:900px) { .site-header { flex-wrap:wrap; gap:12px; } .site-header nav { order:3; width:100%; justify-content:center; } .site-header .project-code { margin-left:auto; } }
+@media(max-width:650px) { .site-header nav { display:flex!important; gap:8px; } .site-header nav a,.site-header nav button { font-size:10px; } .evidence-result { grid-template-columns:1fr; } .evidence-result > div + div { border-left:0; border-top:1px solid #a7d4cd36; } }

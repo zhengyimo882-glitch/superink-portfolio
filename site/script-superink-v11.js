@@ -26,19 +26,69 @@ let reveal = 0;
 let active = true;
 let dpr = 1;
 let completionEffectDone = false;
+let brushPointer = null;
+let previousBrushRect = null;
+let brushScrollFrame = 0;
+let lastBrushScrollTime = 0;
 function sizeCanvas() {
   dpr = Math.min(devicePixelRatio || 1, 2);
   const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
   canvas.width = Math.floor(rect.width * dpr);
   canvas.height = Math.floor(rect.height * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
+  previousBrushRect = rect;
+  lastPoint = null;
 }
 
-function localPoint(event) {
-  const rect = hero.getBoundingClientRect();
-  return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+function localPoint(event, rect = canvas.getBoundingClientRect()) {
+  return { x: (event.clientX - rect.left) * (canvas.width / dpr) / rect.width, y: (event.clientY - rect.top) * (canvas.height / dpr) / rect.height };
+}
+
+function insideBrush(point) {
+  return point.x >= 0 && point.x <= canvas.width / dpr && point.y >= 0 && point.y <= canvas.height / dpr;
+}
+
+// Clip the swept pointer path when the canvas scrolls into or out of view.
+function clipBrushSegment(from, to) {
+  const dx = to.x - from.x, dy = to.y - from.y;
+  let start = 0, end = 1;
+  for (const [p, q] of [[-dx, from.x], [dx, canvas.width / dpr - from.x], [-dy, from.y], [dy, canvas.height / dpr - from.y]]) {
+    if (p === 0) { if (q < 0) return null; continue; }
+    const t = q / p;
+    if (p < 0) start = Math.max(start, t); else end = Math.min(end, t);
+    if (start > end) return null;
+  }
+  return [{ x: from.x + dx * start, y: from.y + dy * start }, { x: from.x + dx * end, y: from.y + dy * end }];
+}
+
+function paintScrolledBrush() {
+  brushScrollFrame = 0;
+  const rect = canvas.getBoundingClientRect(), previous = previousBrushRect;
+  previousBrushRect = rect;
+  if (hero.hidden || !rect.width || !rect.height || !previous?.width || !previous?.height || rect.bottom <= 0 || rect.top >= innerHeight) {
+    lastPoint = null;
+    return;
+  }
+  // Wheel events supply the real pointer even when it has never moved. Keyboard
+  // and touch scrolling use a viewport-center brush until a pointer is available.
+  const pointer = brushPointer || { clientX: innerWidth * .5, clientY: innerHeight * .5 };
+  const point = localPoint(pointer, rect), oldPoint = localPoint(pointer, previous);
+  const segment = clipBrushSegment(oldPoint, point), now = performance.now();
+  if (segment) {
+    const distance = Math.hypot(segment[1].x - segment[0].x, segment[1].y - segment[0].y);
+    if (distance > .25) {
+      const elapsed = Math.max(8, Math.min(64, now - lastBrushScrollTime));
+      paintBrush(segment[0], segment[1], distance / elapsed * 16);
+      movement += distance;
+      updateCreation();
+    }
+  }
+  lastBrushScrollTime = now;
+  lastPoint = insideBrush(point) ? point : null;
+  lastTime = now;
 }
 
 function paintBrush(from, to, speed) {
@@ -174,11 +224,15 @@ function updateCreation() {
 
 function handlePointerMove(event) {
   cursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px) translate(-50%, -50%)`;
-  if (!active) return;
+  // Consume pending page movement with the previous pointer before recording a
+  // new one, so simultaneous scrolling and mouse movement never double-paint.
+  if (brushScrollFrame) { cancelAnimationFrame(brushScrollFrame); paintScrolledBrush(); }
+  brushPointer = { clientX: event.clientX, clientY: event.clientY };
+  previousBrushRect = canvas.getBoundingClientRect();
+  if (!active || hero.hidden || !previousBrushRect.width || !previousBrushRect.height) { lastPoint = null; return; }
 
-  const rect = hero.getBoundingClientRect();
-  if (event.clientY < rect.top || event.clientY > rect.bottom) return;
-  const point = localPoint(event);
+  const point = localPoint(event, previousBrushRect);
+  if (!insideBrush(point)) { lastPoint = null; return; }
   const now = performance.now();
 
   if (!lastPoint || now - lastTime > 140) {
@@ -199,9 +253,13 @@ function handlePointerMove(event) {
 }
 
 window.addEventListener("pointermove", handlePointerMove);
+window.addEventListener("wheel", event => {
+  brushPointer = { clientX: event.clientX, clientY: event.clientY };
+}, { passive: true });
 window.addEventListener("scroll", () => {
   const scrollable = document.documentElement.scrollHeight - innerHeight;
   scrollProgress.style.width = `${scrollable ? scrollY / scrollable * 100 : 0}%`;
+  if (!brushScrollFrame) brushScrollFrame = requestAnimationFrame(paintScrolledBrush);
 }, { passive: true });
 
 document.querySelectorAll("a, button, input, iframe").forEach((element) => {
@@ -210,6 +268,9 @@ document.querySelectorAll("a, button, input, iframe").forEach((element) => {
 });
 
 resetButton.addEventListener("click", () => {
+  if (brushScrollFrame) cancelAnimationFrame(brushScrollFrame);
+  brushScrollFrame = 0;
+  previousBrushRect = canvas.getBoundingClientRect();
   ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
   lastPoint = null;
   movement = 0;
@@ -335,6 +396,10 @@ document.querySelectorAll(
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
+    if (entry.target.closest('.si-motion-scope')) {
+      revealObserver.unobserve(entry.target);
+      return;
+    }
     if (entry.isIntersecting) {
       entry.target.classList.add("in-view");
       revealObserver.unobserve(entry.target);
@@ -346,6 +411,10 @@ revealTargets.forEach((element) => revealObserver.observe(element));
 
 const sectionFxObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
+    if (entry.target.closest('.si-motion-scope')) {
+      sectionFxObserver.unobserve(entry.target);
+      return;
+    }
     if (!entry.isIntersecting) return;
     entry.target.classList.add("section-live");
     sectionFxObserver.unobserve(entry.target);

@@ -13,8 +13,16 @@
       <link rel="stylesheet" href="./styles-project-selector.css?v=20260908-compact">
   <link rel="stylesheet" href="./styles-relic-showcase.css?v=gallery-reading-18">
   <link rel="stylesheet" href="./styles-liquid-glass.css?v=glass-03">
-    <link rel="stylesheet" href="./ink-studio.css">
-  </head>
+    <link rel="stylesheet" href="./ink-studio.css?v=space-4">
+    <link rel="stylesheet" href="./superink-space.css?v=profile-1">
+    <link rel="stylesheet" href="./superink-arrivals.css?v=arrival-7">
+    <link rel="stylesheet" href="./about-profile.css?v=profile-2">
+    <link rel="stylesheet" href="./portfolio-navigation.css?v=design-1">
+    <link rel="stylesheet" href="./relic-space.css?v=tomb-2">
+    <link rel="stylesheet" href="./relic-descent.css?v=descent-1">
+    <link rel="stylesheet" href="./media-balance.css?v=balance-1">
+  <link rel="stylesheet" href="./ak-inspection.css?v=inspect-2">
+</head>
   <body>
     <div class="cursor" aria-hidden="true"><i></i></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -37,7 +45,15 @@
     <main>
       <section id="ink-studio" aria-labelledby="studio-title">
         <div class="studio-pin">
-          <div class="studio-heading"><h1 id="studio-title">SuperInk</h1><p data-studio-hint></p></div>
+          <div class="studio-heading">
+            <h1 id="studio-title" aria-label="SuperInk">
+              <span class="studio-title-depth" aria-hidden="true">SuperInk</span>
+              <span class="studio-title-outline" aria-hidden="true">SuperInk</span>
+              <span class="studio-title-face" aria-hidden="true">SuperInk</span>
+              <span class="studio-title-light" aria-hidden="true">SuperInk</span>
+            </h1>
+            <p data-studio-hint aria-live="polite" aria-atomic="true"></p>
+          </div>
           <canvas class="studio-canvas" tabindex="0" aria-label="SuperInk drawing and model viewer"></canvas>
           <div class="studio-controls"><button type="button" data-studio-reset>Redraw</button><button type="button" data-studio-next>Preview model ↓</button></div>
         </div>
@@ -350,60 +366,74 @@
       </section>
       </div>
 
-      <section class="legacy-section" id="about" aria-labelledby="legacy-title">
-        <div class="legacy-orbit" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
-        <div class="fps-section-hud radar-hud" aria-hidden="true">
-          <b>DESIGNER SIGNAL</b>
-          <small>LOCKED / YIMO ZHENG</small>
-          <i></i>
-        </div>
+      <section class="legacy-section si-space-section" id="about" aria-labelledby="legacy-title">
         <div class="legacy-content">
-          <div class="section-label"><span>01</span> Why I make games</div>
-          <h2 id="legacy-title">I make games to create worlds that can outlive me—proof that I was here, and that I left something worth remembering.</h2>
-          <figure class="about-portrait">
-            <img src="./assets/yimo-portrait-cutout.png" alt="Portrait of Yimo Zheng">
-          </figure>
-          <div class="legacy-meta">
-            <div class="profile-card">
-              <span class="profile-mark">YZ</span>
-              <div><strong>Yimo Zheng</strong><small>Gameplay + Technical Designer</small></div>
+          <div class="section-label"><span>PROFILE / 03</span> Behind the systems</div>
+          <div class="about-hero">
+            <div class="about-intro">
+              <p class="about-name">Yimo Zheng</p>
+              <p class="about-role">Gameplay + Technical Designer</p>
+              <h2 id="legacy-title">I turn player ideas <em>into playable systems.</em></h2>
+              <p class="about-summary">I study Computer Science at UW–Madison and build independent games. My work connects player input, readable feedback, and the rules that make a mechanic worth exploring.</p>
+              <div class="about-links">
+                <a href="mailto:zhengyimo882@gmail.com">Let’s talk <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/zhengyimo882-glitch" target="_blank" rel="noopener noreferrer">View GitHub <span aria-hidden="true">↗</span></a>
+              </div>
             </div>
-            <dl>
-              <div><dt>Focus</dt><dd>Systemic FPS / Interaction Design</dd></div>
-              <div><dt>Tools</dt><dd>Unity / C# / Rapid Prototyping</dd></div>
-              <div><dt>Current Project</dt><dd>SuperInk / Calligrapher</dd></div>
-            </dl>
-            <a href="https://github.com/zhengyimo882-glitch" target="_blank" rel="noreferrer">View GitHub <span>↗</span></a>
+            <figure class="about-portrait">
+              <div class="about-orbits" aria-hidden="true"><i></i><i></i><i></i></div>
+              <img src="./assets/yimo-portrait-cutout.png" alt="Portrait of Yimo Zheng" loading="lazy" width="1023" height="1537">
+              <figcaption><span class="about-signal" aria-hidden="true"></span> MADISON, WI <span>DESIGN / BUILD / PLAYTEST</span></figcaption>
+            </figure>
           </div>
-          <div class="resume-highlights" aria-label="Selected resume highlights">
-            <article class="education-highlight">
-              <span>Education</span>
-              <h3>University of Wisconsin-Madison</h3>
-              <p>B.S. Computer Science · GPA 3.8 / 4.0</p>
-              <small>Modern game engines · Computer graphics · Computer engineering</small>
+
+          <div class="legacy-meta about-education">
+            <div><span class="about-kicker">Education</span><h3>University of Wisconsin–Madison</h3><p>B.S. in Computer Science · Expected May 2028</p></div>
+            <div class="about-gpa"><strong>3.6 <small>/ 4.0</small></strong><span>GPA</span></div>
+            <p class="about-coursework">Computer graphics · Game engines · Object-oriented programming</p>
+          </div>
+
+          <div class="about-section-heading"><span class="about-kicker">01 / What I bring</span><h3>Design decisions. Working systems.</h3></div>
+          <div class="resume-highlights">
+            <article>
+              <span>01 / SYSTEMS DESIGN</span><h3>Make the input matter.</h3>
+              <p>In SuperInk, drawing recognition, ink cost, temporary weapons, and depletion form one combat loop. I designed and implemented the recognition, ink economy, and weapon generation around Akila’s FPS foundation.</p>
+              <div class="about-evidence"><b>SuperInk</b><span>Unity 6 / C# / URP</span></div>
             </article>
             <article>
-              <span>Software Engineering</span>
-              <h3>Real-time S&amp;P 500 intelligence platform</h3>
-              <p>Built with Flask, React, SQLite, FastAPI microservices, and Docker.</p>
-              <div class="resume-stats">
-                <strong>55<small>stocks</small></strong>
-                <strong>11<small>sectors</small></strong>
-                <strong>25%<small>faster SQL</small></strong>
-                <strong>30%<small>faster deploys</small></strong>
-              </div>
+              <span>02 / INTERACTION DESIGN</span><h3>Build tension through rules.</h3>
+              <p>In One More Relic, I built a six-state supernatural encounter loop and mouse-directed lighting with wall occlusion. Movement and visibility shape discovery, while a two-item carry limit gives each find a cost.</p>
+              <div class="about-evidence"><b>One More Relic</b><span>Phaser 3 / TypeScript / WebGL</span></div>
             </article>
             <article>
-              <span>Gameplay Algorithms + LLM</span>
-              <h3>SuperInk Recognition System</h3>
-              <p>Designed a geometric drawing-recognition pipeline using ordered stroke capture, normalization, resampling, direction structure, path length, and template similarity. LLM-assisted workflows support rapid system documentation, test-case ideation, and prototype iteration.</p>
-              <div class="resume-stats compact">
-                <strong>5<small>pipeline stages</small></strong>
-                <strong>4<small>quality tiers</small></strong>
-                <strong>LLM<small>assisted iteration</small></strong>
-              </div>
+              <span>03 / PROTOTYPE &amp; ITERATE</span><h3>Find the smallest playable proof.</h3>
+              <p>After mentor scope reviews, I cut SuperInk’s multiplayer and full character roster to focus the vertical slice. I checked recognition with eight Unity EditMode cases and verified gameplay through manual playtests.</p>
+              <div class="about-evidence"><b>Scope → Build → Playtest</b><span>Iteration with evidence</span></div>
             </article>
           </div>
+
+          <div class="about-section-heading"><span class="about-kicker">02 / Beyond the prototypes</span><h3>A foundation in engineering and design.</h3></div>
+          <div class="about-experience">
+            <article class="about-panel">
+              <div class="about-entry-top"><span class="about-kicker">Engineering internship</span><time datetime="2026-01">JAN 2026</time></div>
+              <h3>AiFin Sphere</h3><p class="about-position">Software Engineer Intern</p>
+              <p>Built a sentiment dashboard covering 55 stocks across 11 sectors. Added authentication and SQL indexing, then split the prototype into three services plus a gateway with Docker Compose for local demos.</p>
+              <div class="about-tags"><span>Python / Flask</span><span>React / SQLite</span><span>Docker</span></div>
+            </article>
+            <article class="about-panel">
+              <div class="about-entry-top"><span class="about-kicker">Game design training</span><span>MAY–JUN 2026</span></div>
+              <h3>Tencent Games Opening Lesson</h3><p class="about-position">Game Planning Track · Certificate completed</p>
+              <p>Studied production workflow, systems, combat, and numerical design. For my independent capstone, I broke down Zenless Zone Zero’s character stats, combat rules, and progression to examine how different builds create team roles.</p>
+              <div class="about-tags"><span>Systems analysis</span><span>Combat / Economy</span><span>Player perspective</span></div>
+            </article>
+          </div>
+
+          <div class="about-toolkit">
+            <span class="about-kicker">Working toolkit</span>
+            <dl><div><dt>Build</dt><dd>Unity 6 · C# · Phaser 3 · TypeScript</dd></div><div><dt>Design</dt><dd>Gameplay systems · State machines · Data-driven tuning</dd></div><div><dt>Collaborate</dt><dd>Git · Figma · Rapid prototyping</dd></div></dl>
+          </div>
+          <div class="about-contact"><p>I make games to leave something worth remembering.</p><a href="mailto:zhengyimo882@gmail.com">zhengyimo882@gmail.com <span aria-hidden="true">↗</span></a></div>
+          <div class="about-projects"></div>
         </div>
       </section>
     </main>
@@ -417,14 +447,19 @@
 
     <script src="./vendor/gsap-3.13.0/gsap.min.js" defer></script>
     <script src="./vendor/gsap-3.13.0/ScrollTrigger.min.js" defer></script>
-    <script src="./script-i18n.js?v=bilingual-02" defer></script>
-    <script src="./script-superink-v11.js" defer></script>
-    <script src="./script-concept-story.js?v=20260728-order" defer></script>
+    <script src="./script-i18n.js?v=balance-1" defer></script>
+    <script src="./script-superink-v11.js?v=scroll-ink-1" defer></script>
+    <script src="./script-concept-story.js?v=arrival-5" defer></script>
     <script src="./script-recognition-lab.js" defer></script>
-      <script src="./relic-config.js?v=shop-en-17" defer></script>
-    <script src="./script-relic-gallery.js?v=bilingual-01" defer></script><script src="./script-relic.js?v=bilingual-01" defer></script>
-    <script src="./script-project-selector.js?v=studio-1" defer></script>
+      <script src="./relic-config.js?v=balance-1" defer></script>
+    <script src="./script-relic-gallery.js?v=balance-1" defer></script><script src="./script-relic.js?v=balance-1" defer></script>
+    <script src="./script-project-selector.js?v=restart-1" defer></script>
     <script src="./script-relic-text.js?v=bilingual-01" defer></script>
-    <script src="./ink-studio.js" defer></script>
+    <script src="./ink-studio.js?v=inspect-2" defer></script>
+    <script src="./superink-arrivals.js?v=profile-1" defer></script>
+    <script src="./design-evidence.js?v=balance-1" defer></script>
+    <script src="./relic-space.js?v=tomb-3" defer></script>
+    <script src="./relic-descent.js?v=balance-1" defer></script>
+    <script type="module" src="./ak-model.js?v=inspect-2"></script>
   </body>
 </html>

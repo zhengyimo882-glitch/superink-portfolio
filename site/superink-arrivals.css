@@ -1,0 +1,46 @@
+/* Arrival effects are finite: content returns to its normal readable state. */
+.si-motion-scope { overflow:visible !important; }
+.si-motion-scope [data-si-arrival] { animation:none !important; }
+/* Baseline stays visible until a working controller has armed the entrance. */
+.si-motion-scope [data-si-state="pending"] { opacity:1; }
+.si-motion-scope.si-arrivals-ready [data-si-state="pending"] { opacity:0; }
+.si-motion-scope [data-si-state="running"] {
+  will-change:transform,opacity,filter;
+  transition:none !important;
+  rotate:none !important;
+  backface-visibility:hidden;
+}
+.si-motion-scope [data-si-state="done"] { opacity:1; }
+.si-motion-scope :is(.video-frame,.video-player > img,.video-reticle,.fps-section-hud,.hud-corners) {
+  animation:none !important;
+}
+.si-motion-scope [data-si-arrival="fold"] { transform-origin:50% 85%; }
+.si-motion-scope [data-si-arrival="orbitLeft"] { transform-origin:15% 50%; }
+.si-motion-scope [data-si-arrival="orbitRight"] { transform-origin:85% 50%; }
+.si-motion-scope [data-si-arrival="shutter"] { transform-origin:50% 50%; }
+.si-motion-scope [data-si-arrival="trace"] { transform-origin:left center; }
+.si-motion-scope .intent-body blockquote { perspective:1100px; }
+
+/* Four image apertures follow the four independent scroll-driven trajectories. */
+.si-motion-scope.story-ready .story-card img {
+  clip-path:var(--story-image-clip,none);
+  filter:blur(var(--story-image-blur,0px)) saturate(1.08) contrast(1.04);
+}
+.si-motion-scope.story-ready .story-card:nth-of-type(1) .story-copy h3 {
+  transform:perspective(900px) translateZ(calc(var(--story-copy-y,0px) * -3));
+}
+.si-motion-scope.story-ready .story-card:nth-of-type(2) .story-copy h3 {
+  transform:translateX(calc(var(--story-copy-y,0px) * -1.5));
+}
+.si-motion-scope.story-ready .story-card:nth-of-type(3) .story-copy h3 {
+  transform:perspective(900px) rotateX(var(--story-copy-tilt,0deg));
+}
+.si-motion-scope.story-ready .story-card:nth-of-type(4) .story-copy h3 {
+  transform:translateX(calc(var(--story-copy-y,0px) * 1.5));
+}
+.si-motion-scope.story-ready .story-copy p { transform:translateY(calc(var(--story-copy-y,0px) * .4)); }
+@media(prefers-reduced-motion:reduce) {
+  .si-motion-scope [data-si-arrival] { opacity:1 !important; will-change:auto; }
+  .si-motion-scope.story-ready .story-card img { clip-path:none; filter:saturate(1.08) contrast(1.04); }
+  .si-motion-scope.story-ready .story-card .story-copy :is(h3,p) { transform:none; }
+}

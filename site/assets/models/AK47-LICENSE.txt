@@ -1,0 +1,12 @@
+High-poly AK-47
+Author: Lamoot
+Source: https://opengameart.org/content/high-poly-ak-47
+Original OBJ: https://opengameart.org/sites/default/files/highpoly_ak47.obj
+License: CC0 (public-domain dedication), as listed on the source page.
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Downloaded for this portfolio on 2026-11-21.
+The original OBJ is retained. Runtime changes: recentered, rotated and scaled;
+feature edges extracted for the drawing transition; custom studio material and
+lighting applied. No texture maps are included in this source OBJ.
+The model is a third-party visual asset, not a claim of original modeling work.
