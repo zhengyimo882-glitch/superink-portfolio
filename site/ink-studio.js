@@ -79,6 +79,7 @@
   const noise = n => { const v=Math.sin(n*127.1+311.7)*43758.5453; return v-Math.floor(v); };
   const dust = Array.from({length:76},(_,i)=>({x:(noise(i)-.5)*2600,y:(noise(i+90)-.5)*1000,z:noise(i+180)*2400,size:.6+noise(i+250)*1.5}));
   function drawSpace() {
+    if(document.body.classList.contains("world-ready"))return;
     bg.clearRect(0,0,width,height);
     const u=Math.min(width,height)/780;
     const travelDepth=reduced.matches?0:(window.scrollY||0)*.12;

@@ -1,0 +1,15 @@
+/* Physical environments have a quiet reading zone and richer side lighting. */
+.portfolio-world { position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0; }
+body.world-ready > :is(.superink-space,.relic-space) { display:none!important; }
+body.world-ready::after { content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,#04090d40 0%,transparent 65%),linear-gradient(0deg,#03070b50,transparent 35%,#03070b30); }
+body.world-ready.viewing-relic::after { background:radial-gradient(ellipse at 50% 45%,#100d0938,transparent 65%),linear-gradient(0deg,#0c090850,transparent 40%); }
+body.world-ready.viewing-relic .rr-hero-copy::before,body.world-ready.viewing-relic .rr-hero-copy::after { content:none; }
+body.world-ready.viewing-relic .rr-luxe-panel { background:linear-gradient(135deg,#b6a18513,transparent 45%),linear-gradient(145deg,#241d16a6,#14110ec4); }
+body.world-ready.viewing-relic :is(.rr-heading,.rr-gallery-heading,.rr-ending).rr-luxe-panel { border-color:#d3bd8d26;box-shadow:inset 0 1px 0 #fff0cf12,0 15px 45px #0003; }
+body.world-ready.viewing-relic :is(.rr-heading,.rr-gallery-heading,.rr-ending) > .rr-luxe-trim { opacity:.35; }
+body.world-ready.viewing-relic .rr-luxe-media { border-color:#d3bd8d6b; }
+body.world-ready.viewing-relic .rr-hero h1 { text-shadow:0 2px 0 #725638,0 14px 35px #0008; }
+body.world-ready:not(.viewing-relic) .studio-title-face { filter:drop-shadow(0 0 10px #a3e9d825); }
+@media(max-width:700px) { body.world-ready::after { background:linear-gradient(#070c1140,#070c1160); } }
+
+body.world-ready.viewing-relic .rr-button.rr-primary { background:linear-gradient(130deg,#d6c09b,#af9263);color:#241b12; }
