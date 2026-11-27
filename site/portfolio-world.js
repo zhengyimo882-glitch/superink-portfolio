@@ -1,6 +1,10 @@
 import * as T from './vendor/three/three.module.js';
+if (!document.body.classList.contains('case-page')) {
+ await new Promise(resolve => window.addEventListener('case-view-ready', resolve, {once:true}));
+}
 // One shared renderer; the selected project owns a distinct physical scene.
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const calm=document.body.classList.contains('case-page')&&!document.body.classList.contains('case-immersive');
 const relic=document.body.classList.contains('viewing-relic');
 const canvas=document.createElement('canvas');canvas.className='portfolio-world';canvas.setAttribute('aria-hidden','true');
 let renderer;
@@ -77,19 +81,19 @@ if(renderer){
  const dust=new T.Points(dg,new T.PointsMaterial({color:relic?'#e4c38d':'#93cbbf',size:.055,map:new T.CanvasTexture(dc),transparent:true,opacity:.35,depthWrite:false,blending:T.AdditiveBlending}));scene.add(dust);
  let frame=0,last=0,time=0,px=0,py=0,sx=0,sy=0,depth=0,targetDepth=0;
  let sections=[];
- function measure(){sections=relic?['relic-intro','relic-gameplay','relic-objects','relic-fear','relic-shop','relic-artwork','about'].map(id=>document.getElementById(id)).filter(Boolean):['ink-studio','about'].map(id=>document.getElementById(id)).filter(Boolean);updateDepth();}
- function updateDepth(){if(relic&&sections.length>2){let i=0;while(i<sections.length-2&&scrollY>=sections[i+1].getBoundingClientRect().top+scrollY)i++;const a=sections[i].getBoundingClientRect().top+scrollY,b=sections[i+1].getBoundingClientRect().top+scrollY;const stops=[0,12,22,31,43,46,49];targetDepth=T.MathUtils.lerp(stops[i],stops[i+1],T.MathUtils.clamp((scrollY-a)/Math.max(1,b-a),0,1));}else targetDepth=Math.min(30,scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*30);}
- function render(now=0){frame=0;if(document.hidden)return;if(now-last<33&&!reduced.matches){frame=requestAnimationFrame(render);return;}const dt=Math.min((now-last)/1000||.016,.06);last=now;if(!reduced.matches)time+=dt;
- const ease=reduced.matches?1:1-Math.exp(-dt*3);depth+=(targetDepth-depth)*ease;sx+=(px-sx)*ease;sy+=(py-sy)*ease;
- camera.position.set(reduced.matches?0:sx*.45,1+(reduced.matches?0:sy*.22),14-(reduced.matches?0:depth));camera.lookAt(0,.8,camera.position.z-15);
+ function measure(){sections=relic?['case-overview','relic-gameplay','case-system','case-experience','relic-intro','relic-objects','relic-fear','relic-shop','relic-artwork'].map(id=>document.getElementById(id)).filter(Boolean):['ink-studio','about'].map(id=>document.getElementById(id)).filter(Boolean);updateDepth();}
+ function updateDepth(){sections=sections.filter(el=>!el.closest("[hidden]")).sort((a,b)=>a.getBoundingClientRect().top-b.getBoundingClientRect().top);if(relic&&sections.length>2){let i=0;while(i<sections.length-2&&scrollY>=sections[i+1].getBoundingClientRect().top+scrollY)i++;const a=sections[i].getBoundingClientRect().top+scrollY,b=sections[i+1].getBoundingClientRect().top+scrollY;const stops=sections.map((_,j)=>49*j/(sections.length-1));targetDepth=T.MathUtils.lerp(stops[i],stops[i+1],T.MathUtils.clamp((scrollY-a)/Math.max(1,b-a),0,1));}else targetDepth=Math.min(30,scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*30);}
+ function render(now=0){frame=0;if(document.hidden)return;if(now-last<33&&!(reduced.matches||calm)){frame=requestAnimationFrame(render);return;}const dt=Math.min((now-last)/1000||.016,.06);last=now;if(!(reduced.matches||calm))time+=dt;
+ const ease=(reduced.matches||calm)?1:1-Math.exp(-dt*3);depth+=(targetDepth-depth)*ease;sx+=(px-sx)*ease;sy+=(py-sy)*ease;
+ camera.position.set((reduced.matches||calm)?0:sx*.45,1+((reduced.matches||calm)?0:sy*.22),14-((reduced.matches||calm)?0:depth));camera.lookAt(0,.8,camera.position.z-15);
  for(const item of ink){const {m,original,phase,base}=item,p=m.geometry.attributes.position;for(let j=0;j<p.count;j++){const x=original[j*3],y=original[j*3+1],z=original[j*3+2];const r=1+.13*Math.sin(y*3+time*.55+phase)*Math.cos(x*2+time*.3)+.07*Math.sin(z*4+time*.4);p.setXYZ(j,x*r,y*r,z*r);}p.needsUpdate=true;m.geometry.computeVertexNormals();const assembly=T.MathUtils.smoothstep(scrollY,200,1500);m.position.x=base.x*(1+assembly*.15);m.scale.y=item.radius*(1.25+Math.sin(time*.25+phase)*.15-assembly*.3);m.position.y=base.y+Math.sin(time*.32+phase)*.22;m.rotation.y=time*.07+phase;}
  dust.rotation.y=Math.sin(time*.04)*.025;dust.position.y=Math.sin(time*.12)*.12;
  lamps.forEach((l,i)=>l.intensity=34*(1+Math.sin(time*.7+i)*.025));renderer.render(scene,camera);
- if(!reduced.matches)frame=requestAnimationFrame(render);
+ if(!(reduced.matches||calm))frame=requestAnimationFrame(render);
  }
  function wake(){if(!frame&&!document.hidden){last=performance.now()-40;frame=requestAnimationFrame(render);}}
- addEventListener('pointermove',e=>{if(e.pointerType==='touch'||reduced.matches)return;px=e.clientX/innerWidth-.5;py=-(e.clientY/innerHeight-.5);},{passive:true});
- addEventListener('scroll',()=>{updateDepth();if(reduced.matches)wake();},{passive:true});
+ addEventListener('pointermove',e=>{if(e.pointerType==='touch'||(reduced.matches||calm))return;px=e.clientX/innerWidth-.5;py=-(e.clientY/innerHeight-.5);},{passive:true});
+ addEventListener('scroll',()=>{updateDepth();if((reduced.matches||calm))wake();},{passive:true});
  addEventListener('resize',()=>{camera.fov=innerWidth<700?78:48;camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);measure();wake();},{passive:true});
  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else wake();});reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;wake();});
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(frame);frame=0;document.body.classList.remove('world-ready');});canvas.addEventListener('webglcontextrestored',()=>location.reload());

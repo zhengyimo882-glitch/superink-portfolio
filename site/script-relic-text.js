@@ -1,12 +1,13 @@
 /* Reveal DOM text only: image pixels and embedded video content stay untouched. */
 (() => {
  const root=document.querySelector('#relic-project');if(!root)return;
- const areas=[root,document.querySelector('.site-header nav'),document.querySelector('.project-code'),document.querySelector('footer')].filter(Boolean);
+ // Navigation must remain readable as soon as its mobile menu opens.
+ const areas=[root,document.querySelector('footer')].filter(Boolean);
  const motion=matchMedia('(prefers-reduced-motion: reduce)');
  const io=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>{
   target.classList.toggle('rr-ink-visible',isIntersecting && document.body.classList.contains('viewing-relic'));
  }),{threshold:0.15});
- const excluded='rr-ink-run,script,style,iframe,svg,canvas,.rr-art-narration,[aria-hidden="true"]';
+ const excluded='.case-section,.case-video,rr-ink-run,script,style,iframe,svg,canvas,.rr-art-narration,[aria-hidden="true"]';
  function wrap(node){
   const run=document.createElement('rr-ink-run');
   const title=Boolean(node.parentElement.closest('h1,h2,h3,h4,h5,h6'));

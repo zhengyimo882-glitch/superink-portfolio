@@ -255,6 +255,7 @@
   }
   function resize() {
     const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;
+    if(!width || !height)return;
     const ratio=Math.min(devicePixelRatio||1,width<650?1.5:2);
     for(const [c,context] of [[canvas,ctx],[space,bg]]) {
       c.width=Math.round(width*ratio);c.height=Math.round(height*ratio);

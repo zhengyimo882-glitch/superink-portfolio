@@ -43,7 +43,7 @@
   });
   const navLabel=(en,zh)=>window.siteI18n?.language==='zh-CN'?zh:en;
   const updateNav=game=>{
-    nav.innerHTML=`<button type="button" data-project="superink" aria-pressed="${game==='superink'}">SuperInk</button><button type="button" data-project="relic" aria-pressed="${game==='relic'}">One More Relic</button><a href="${game==='relic'?'#relic-gameplay':'#proof'}">${navLabel('Gameplay','实机演示')}</a><a href="${game==='relic'?'#relic-evidence':'#ink-evidence'}">${navLabel('Design','设计')}</a><a href="#about">${navLabel('About','关于我')}</a><a href="mailto:zhengyimo882@gmail.com">${navLabel('Contact','联系')}</a>`;
+    nav.innerHTML=`<a href="./#projects">${navLabel('Work','作品')}</a><button type="button" data-project="superink" aria-pressed="${game==='superink'}">SuperInk</button><button type="button" data-project="relic" aria-pressed="${game==='relic'}">One More Relic</button><a href="${game==='relic'?'#relic-gameplay':'#proof'}">${navLabel('Gameplay','实机演示')}</a><a href="${game==='relic'?'#relic-evidence':'#ink-evidence'}">${navLabel('Design','设计')}</a><a href="#about">${navLabel('About','关于我')}</a><a href="./assets/Yimo-Zheng-Resume.pdf?v=20261124-2" target="_blank" rel="noopener">${navLabel('Resume ↗','简历 ↗')}</a><a href="mailto:zhengyimo882@gmail.com">${navLabel('Contact','联系')}</a>`;
   };
   updateNav('superink');
   nav.addEventListener('click',event=>{
@@ -64,9 +64,9 @@
     sessionStorage.setItem('portfolio-project-restart', '1');
     history.scrollRestoration = 'manual';
     // Drop section anchors so reloading cannot jump back to About or an old project.
-    history.replaceState(history.state, '', location.pathname + location.search);
+    const destination=new URL('./projects.html',location.href);destination.searchParams.set('project',game);
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    location.reload();
+    location.assign(destination.href);
   }
 
   function selectGame(game) {
@@ -102,10 +102,12 @@
   const scrollTo = node => node.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
   selector.querySelector('.project-continue').addEventListener('click', () => openProject(selected));
   relic.querySelector('.project-return').addEventListener('click', () => { scrollTo(selector); selector.querySelector(`[data-game="${selected}"]`).focus({ preventScroll: true }); });
-  if (!restartAtTop && location.hash.startsWith('#relic-')) {
+  const requestedProject=new URLSearchParams(location.search).get('project');
+  if(requestedProject==='superink'){selectGame('superink');}
+  else if (!restartAtTop && location.hash.startsWith('#relic-')) {
     selectGame('relic');
     requestAnimationFrame(() => document.getElementById(location.hash.slice(1))?.scrollIntoView({behavior:'instant',block:'start'}));
-  } else if (sessionStorage.getItem('portfolio-project') === 'relic') {
+  } else if (requestedProject==='relic' || (!requestedProject && sessionStorage.getItem('portfolio-project') === 'relic')) {
     selectGame('relic');
   }
   if (restartAtTop) {

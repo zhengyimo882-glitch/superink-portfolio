@@ -155,4 +155,5 @@ async function mount(){
     window.superinkModel=api;window.dispatchEvent(new Event('superink-model-ready'));
   }catch(error){inspection?.remove();renderer?.domElement.remove();renderer?.dispose();console.warn('Detailed AK unavailable; retaining drawing preview.',error);}
 }
-if(pin)mount();
+function mountForView(){if(pin && !document.body.classList.contains('viewing-relic') && document.body.classList.contains('case-immersive'))mount();}
+if(document.body.classList.contains('case-page'))mountForView();else window.addEventListener('case-view-ready',mountForView,{once:true});

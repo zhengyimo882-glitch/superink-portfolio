@@ -1,0 +1,16 @@
+/* Shared project navigation: explicit grid rows avoid the old mobile overflow. */
+body .site-header { display:grid!important;grid-template-columns:minmax(150px,1fr) auto auto;gap:18px;height:auto!important;min-height:72px;padding:12px 18px;align-items:center; }
+body .site-header .identity { grid-column:1;grid-row:1; }
+body .site-header .project-code { grid-column:3;grid-row:1; }
+body .site-header nav { grid-column:2;grid-row:1;display:flex;align-items:center;gap:12px;flex-wrap:wrap;width:auto; }
+body .site-header nav a,body .site-header nav button { min-height:40px;display:inline-flex;align-items:center;font-size:11px; }
+body .site-header .identity small { display:block;font-size:8px; }
+body .site-header [data-project-code] { display:none; }
+.project-menu-toggle { display:none;min-height:44px;min-width:52px;padding:8px 12px;border:1px solid #a7c7c755;border-radius:6px;background:#10232dbb;color:#e2eeeb;cursor:pointer; }
+body.viewing-relic .project-menu-toggle { background:#241d15;color:#e8d4ae;border-color:#bb996655; }
+body .site-header :is(a,button):focus-visible { outline:2px solid #b6ddcd;outline-offset:3px; }
+@media(max-width:1050px){body .site-header { width:calc(100% - 28px);grid-template-columns:1fr auto auto;gap:10px;min-height:64px; }body .site-header nav { display:none!important;grid-column:1/-1;grid-row:2;width:100%;border-top:1px solid #ffffff20;padding-top:10px;justify-content:flex-start;gap:8px 15px; }body .site-header nav.is-open { display:flex!important; }body .project-menu-toggle { display:block;grid-column:2;grid-row:1; }body .site-header .identity small { font-size:7px; }body .site-header .project-code { margin:0; }body .site-header .language-toggle { min-width:44px;min-height:44px;padding:8px; } }
+@media(max-width:400px){body .site-header { padding:10px;gap:7px; }body .site-header .identity { gap:7px; }body .site-header .identity strong { font-size:12px; }body .site-header .seal { width:28px;height:30px; }body .site-header .identity small { max-width:125px;font-size:6px; }.project-menu-toggle{font-size:11px;min-width:44px;padding:7px;}}
+
+/* Keep direct gameplay anchors clear of the fixed project header. */
+#proof,#relic-gameplay{scroll-margin-top:110px;}

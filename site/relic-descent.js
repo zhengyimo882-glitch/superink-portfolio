@@ -17,7 +17,7 @@
   scenes.forEach(([key,label,title,body])=>{
     const asset=window.RELIC_CONFIG.assets[key];
     const scene=document.createElement('div');scene.className='relic-descent-scene';
-    const image=document.createElement('img');image.src='./assets/relic/'+asset.file;image.alt=window.siteI18n?.t(asset.alt)||asset.alt;image.decoding='async';image.width=1280;image.height=720;
+    const image=document.createElement('img');image.src='./assets/relic/'+asset.file;image.alt=window.siteI18n?.t(asset.alt)||asset.alt;image.decoding='async';image.loading='lazy';image.width=1280;image.height=720;
     const text=document.createElement('div');text.className='relic-descent-copy';
     text.innerHTML=`<span>${label}</span><h2>${title}</h2><p>${body}</p>`;
     scene.append(image,text);world.append(scene);
