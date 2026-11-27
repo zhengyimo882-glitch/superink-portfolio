@@ -51,8 +51,10 @@
     if (!storyStack || !storyCards.length) return;
 
     const stackBounds = storyStack.getBoundingClientRect();
-    const travel = Math.max(storyStack.offsetHeight - innerHeight, 1);
-    const storyProgress = storyClamp(-stackBounds.top / travel, 0, 1);
+    const sticky = storyStack.querySelector('.story-sticky');
+    const stickyTop = parseFloat(getComputedStyle(sticky).top) || 0;
+    const travel = Math.max(storyStack.offsetHeight - sticky.offsetHeight, 1);
+    const storyProgress = storyClamp((stickyTop - stackBounds.top) / travel, 0, 1);
     const storyPosition = storyProgress * (storyCards.length - 1);
     const activeIndex = Math.min(
       storyCards.length - 1,
@@ -85,10 +87,10 @@
       let opacity;
       let arrival = 1;
 
-      if (distance < 0 || (index === 0 && stackBounds.top > 0)) {
-        arrival = index === 0
-          ? storyClamp(1 - stackBounds.top / (innerHeight * .9), 0, 1)
-          : storyClamp(distance + 1, 0, 1);
+      // The opening frame is already readable below the heading. Later scenes
+      // keep their spatial entrances as the visitor scrolls through the stack.
+      if (distance < 0) {
+        arrival = storyClamp(distance + 1, 0, 1);
         const ease = arrival * arrival * (3 - 2 * arrival);
         const remaining = 1 - ease;
         // Each image travels a distinct route through the same 3D space.

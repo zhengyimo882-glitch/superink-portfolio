@@ -7,7 +7,7 @@
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let w=0,h=0,frame=0,last=0,time=0,mx=0,my=0,sx=0,sy=0,travel=0;
   const dust=Array.from({length:65},(_,i)=>({x:(i*0.6180339)%1,y:(i*0.4142135)%1,z:.2+(i%9)/11,r:.6+(i%3)*.5}));
-  const visible=()=>document.body.classList.contains('viewing-relic')&&!document.body.classList.contains('world-ready')&&!document.hidden;
+  const visible=()=>!(document.body.classList.contains("case-page")&&!document.body.classList.contains("case-immersive"))&&document.body.classList.contains('viewing-relic')&&!document.body.classList.contains('world-ready')&&!document.hidden;
   function resize(){w=innerWidth;h=innerHeight;const d=Math.min(devicePixelRatio||1,1.5);canvas.width=w*d;canvas.height=h*d;ctx.setTransform(d,0,0,d,0,0);if(visible())draw();}
   function draw(){
     ctx.fillStyle='#100b09';ctx.fillRect(0,0,w,h);

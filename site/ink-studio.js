@@ -21,8 +21,8 @@
   projectSections.forEach(section => section.classList.add('si-space-section'));
   const label = (en, cn) => window.siteI18n?.language === 'zh-CN' ? cn : en;
   const hints = [
-    ['Drag to sketch a stroke. Scroll to give it form.', '拖动绘制笔画，向下滚动，让它在空间中成形。'],
-    ['Scroll to assemble. Scroll back to retrace your stroke.', '向下滚动聚合成形，向上滚动回到你的笔画。'],
+    ['Drag to sketch a stroke. Scroll to give it form.', '按住鼠标画一笔，再向下滚动，让笔画变成武器。'],
+    ['Scroll to assemble. Scroll back to retrace your stroke.', '继续向下滚动，完成武器；向上滚动可以回看笔画。'],
     ['Drag to orbit the AK. Arrow keys also work.', '拖动旋转 AK，或使用方向键改变视角。']
   ];
   reset.textContent = label('Redraw', '重新绘制');
@@ -247,7 +247,7 @@
         ],{duration:previous<0?700:420,easing:'cubic-bezier(.2,.75,.2,1)'});
       }
       canvas.classList.toggle('model-ready',state===2);
-      next.textContent=state===2?label('Explore gameplay','查看游戏实机'):label('Form the weapon','让笔画成形');
+      next.textContent=state===2?label('Try recognition','试试图案识别'):label('Form the weapon','让笔画成形');
       if(pointer!==null && canvas.hasPointerCapture(pointer))canvas.releasePointerCapture(pointer);
       pointer=null;
     }
@@ -337,7 +337,7 @@
   const jump=top=>window.scrollTo({top,behavior:reduced.matches?'instant':'smooth'});
   const start=()=>stage.getBoundingClientRect().top+scrollY;
   reset.addEventListener('click',()=>{stroke=[];path=[];yaw=-.30;pitch=-.16;draw();jump(start());});
-  next.addEventListener('click',()=>jump(mode===2?document.querySelector('#proof').getBoundingClientRect().top+scrollY:start()+travel()*.8));
+  next.addEventListener('click',()=>jump(mode===2?document.querySelector(document.body.classList.contains('case-immersive')?'#recognition':'#proof').getBoundingClientRect().top+scrollY:start()+travel()*.8));
   let titleEntrance;
   if (!reduced.matches && titleFace?.animate) {
     titleEntrance=titleFace.animate([

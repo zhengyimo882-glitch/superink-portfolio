@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const root=new URL('./site/',import.meta.url);
+const sources=JSON.parse(fs.readFileSync(new URL('./styles-manifest.json',import.meta.url),'utf8'));
+const css=sources.map(f=>`/* Source: ${f} */\n`+fs.readFileSync(new URL(f,root),'utf8')).join('\n');
+const hash=crypto.createHash('sha256').update(css).digest('hex').slice(0,12);
+fs.writeFileSync(new URL('project-bundle.css',root),css);
+let html=fs.readFileSync(new URL('projects.html',root),'utf8'),first=true;
+html=html.replace(/<link rel="stylesheet"\s+href="\.\/[^\"]+">/g,()=>{if(!first)return '';first=false;return `<link rel="stylesheet" href="./project-bundle.css?v=${hash}">`;});
+fs.writeFileSync(new URL('projects.html',root),html);
+console.log(`${sources.length} CSS sources → 1 request (${Buffer.byteLength(css)} bytes, ${hash})`);
+const homeCSS=['portfolio-home.css','reading-polish.css'].map(f=>fs.readFileSync(new URL(f,root),'utf8')).join('\n');
+const homeHash=crypto.createHash('sha256').update(homeCSS).digest('hex').slice(0,12);
+fs.writeFileSync(new URL('home-bundle.css',root),homeCSS);
+const home=fs.readFileSync(new URL('index.html',root),'utf8').replace(/href="\.\/(?:portfolio-home|home-bundle)\.css[^\"]*"/,`href="./home-bundle.css?v=${homeHash}"`);
+fs.writeFileSync(new URL('index.html',root),home);
+console.log(`Homepage styles → 1 request (${Buffer.byteLength(homeCSS)} bytes, ${homeHash})`);

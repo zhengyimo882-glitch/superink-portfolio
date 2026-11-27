@@ -21,11 +21,11 @@ export function frameModel(corners,width,height){
 }
 
 export const notes=[
-  {id:'01',part:['MUZZLE / FIRE RATE','枪口 / 射速'],title:['Precise drawing. Faster fire.','画得精确，让射速提高。'],body:['Drawing quality becomes a tangible combat advantage.','笔画精度转化为实实在在的战斗优势。'],anchor:[94,13,0],yaw:1.22,pitch:-.12},
-  {id:'02',part:['RECEIVER / RELIABILITY','机匣 / 可靠性'],title:['Every stroke affects reliability.','每一笔，决定武器是否可靠。'],body:['Imperfect recognition can create an unstable weapon that jams.','识别不完美时，武器仍能成形，但可能在战斗中卡壳。'],anchor:[-23,12,7],yaw:-.3,pitch:-.16},
-  {id:'03',part:['MAGAZINE / COMBAT RHYTHM','弹匣 / 战斗节奏'],title:['Creation is only the beginning.','造出来，只是战斗的开始。'],body:['Ammunition management and trigger discipline still shape the fight.','管理弹药、控制开火节奏，让创造与 FPS 操作衔接。'],anchor:[3,-21,0],yaw:-2.35,pitch:.15},
-  {id:'04',part:['STOCK / PLAYER SIGNATURE','枪托 / 个人印记'],title:['Your pattern. Your weapon.','你的图案，你的武器。'],body:['Practice a personal pattern and reproduce it under pressure.','练习自己的视觉图案，在战斗压力下重现它。'],anchor:[-78,8,0],yaw:2.8,pitch:-.12},
-  {id:'05',part:['GRIP / INK STABILITY','握把 / 墨迹稳定性'],title:['Failure becomes a new situation.','失败，也会创造新的战况。'],body:['Unstable creations can expire early or collapse back into ink.','不稳定的造物可能提前失效，或重新化为墨迹。'],anchor:[-33,-17,0],yaw:-2.65,pitch:-.35}
+  {id:'01',part:['MUZZLE / FIRE RATE','枪口 / 射速'],title:['Precise drawing. Faster fire.','画得更准，射速更快。'],body:['Drawing quality becomes a tangible combat advantage.','画得准不准，会影响武器在战斗中的表现。'],anchor:[94,13,0],yaw:1.22,pitch:-.12},
+  {id:'02',part:['RECEIVER / RELIABILITY','机匣 / 可靠性'],title:['Every stroke affects reliability.','画得越稳，用起来越可靠。'],body:['Imperfect recognition can create an unstable weapon that jams.','图案不够准确，也可能生成武器，只是开火时有卡壳的风险。'],anchor:[-23,12,7],yaw:-.3,pitch:-.16},
+  {id:'03',part:['MAGAZINE / COMBAT RHYTHM','弹匣 / 战斗节奏'],title:['Creation is only the beginning.','造出来，只是战斗的开始。'],body:['Ammunition management and trigger discipline still shape the fight.','武器到手后，仍要留意剩余弹药，把握开火时机。'],anchor:[3,-21,0],yaw:-2.35,pitch:.15},
+  {id:'04',part:['STOCK / PLAYER SIGNATURE','枪托 / 个人印记'],title:['Your pattern. Your weapon.','你的图案，你的武器。'],body:['Practice a personal pattern and reproduce it under pressure.','把自己的图案练熟，才能在紧张的战斗中快速画出来。'],anchor:[-78,8,0],yaw:2.8,pitch:-.12},
+  {id:'05',part:['GRIP / INK STABILITY','握把 / 墨迹稳定性'],title:['Failure becomes a new situation.','没画好，也得想办法应对。'],body:['Unstable creations can expire early or collapse back into ink.','不稳定的武器可能提前失效，重新散成墨迹。'],anchor:[-33,-17,0],yaw:-2.65,pitch:-.35}
 ];
 
 export function noteStrength(note,yaw,pitch){

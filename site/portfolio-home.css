@@ -2,3 +2,16 @@
 @media(max-width:850px){.home-header{gap:14px}.home-header nav{gap:16px}.home-intro{grid-template-columns:1fr;gap:25px;padding-top:42px}.intro-note{display:none}.home-about{gap:30px}.work-title{display:block}.work-title>span{display:block;margin-top:4px}}
 @media(max-width:600px){html{scroll-padding-top:20px}.home-header{padding:14px 20px;min-height:76px;flex-wrap:wrap;gap:12px}.home-menu{display:block}.home-header nav{order:4;width:100%;display:flex;flex-wrap:wrap;gap:4px 24px;border-top:1px solid var(--line);padding-top:8px}.js .home-header nav:not(.is-open){display:none}.home-header nav a{min-height:44px}.home-language{min-width:44px}main,.home-footer{padding-left:20px;padding-right:20px}.home-intro{padding-top:35px;padding-bottom:36px}h1{font-size:55px}.intro-copy h2{font-size:23px;max-width:310px}.intro-description{font-size:14px}.home-actions{gap:8px 18px;font-size:12px}.section-top{align-items:start}.section-top p{max-width:150px;text-align:right;font-size:11px}.work-grid{grid-template-columns:1fr;gap:20px}.work-cover{height:170px}.work-copy{padding:18px}.work-title{display:flex;flex-wrap:wrap}.work-title h3{font-size:24px}.home-about{grid-template-columns:1fr;gap:24px;padding:48px 0}.home-contact{display:block;padding:32px 0}.home-contact p{font-size:20px;margin-bottom:18px}.home-footer{font-size:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.work-cover img{transition:none}}
+
+/* Keep the romanized name secondary, including within project identity styles. */
+.person-name{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:.4em;letter-spacing:normal}
+.person-name .person-primary{color:inherit}
+.person-name .person-roman,body .site-header .person-name .person-roman{display:inline;font:400 .62em/1.3 Arial,Helvetica,sans-serif;letter-spacing:.015em;text-transform:none;color:inherit;opacity:.7;max-width:none;white-space:nowrap}
+.person-name .person-roman[hidden],body .site-header .person-name .person-roman[hidden]{display:none}
+.home-intro .person-name{gap:.2em .3em}
+.home-intro .person-name .person-roman{font-size:clamp(16px,2vw,25px)}
+html[lang="zh-CN"] .home-intro h1{letter-spacing:0}
+html[lang="zh-CN"] .name-dot{display:none}
+@media(max-width:600px){.home-brand .person-name{gap:.2em}.home-brand strong{font-size:14px}.home-brand .person-roman{font-size:10px}}
+
+#name .person-name{color:var(--text)}

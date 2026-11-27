@@ -1,0 +1,10 @@
+/* Keep the romanized name secondary, including within project identity styles. */
+.person-name{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:.4em;letter-spacing:normal}
+.person-name .person-primary{color:inherit}
+.person-name .person-roman,body .site-header .person-name .person-roman{display:inline;font:400 .62em/1.3 Arial,Helvetica,sans-serif;letter-spacing:.015em;text-transform:none;color:inherit;opacity:.7;max-width:none;white-space:nowrap}
+.person-name .person-roman[hidden],body .site-header .person-name .person-roman[hidden]{display:none}
+.home-intro .person-name{gap:.2em .3em}
+.home-intro .person-name .person-roman{font-size:clamp(16px,2vw,25px)}
+html[lang="zh-CN"] .home-intro h1{letter-spacing:0}
+html[lang="zh-CN"] .name-dot{display:none}
+@media(max-width:600px){.home-brand .person-name{gap:.2em}.home-brand strong{font-size:14px}.home-brand .person-roman{font-size:10px}}

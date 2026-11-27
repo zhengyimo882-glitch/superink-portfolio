@@ -134,3 +134,25 @@ body.case-immersive.viewing-relic .rr-art-narration p{font-size:15px;line-height
  body.case-immersive .story-card .story-copy p{font-size:12px;margin-top:8px;}
 }
 @media(max-width:360px){body.case-immersive .principle-grid{grid-template-columns:1fr;}}
+/* Reading mode keeps atmosphere without downloading or animating a 3D scene. */
+body.case-page:not(.case-immersive){background:radial-gradient(ellipse at 12% 18%,#214a492b,transparent 48%),radial-gradient(ellipse at 92% 60%,#2647562b,transparent 52%),#0a1119}
+body.case-page.viewing-relic:not(.case-immersive){background:radial-gradient(ellipse at 12% 18%,#75533130,transparent 48%),radial-gradient(ellipse at 92% 60%,#46322230,transparent 52%),#110f0c}
+body.case-page:not(.case-immersive)>:is(.superink-space,.relic-space){display:none!important}
+
+/* Keep the combat opening adjacent to its introduction. */
+body.case-immersive .story-stack{margin-top:24px;}
+body.case-immersive .story-sticky{top:110px;height:calc(100svh - 110px);max-height:none;}
+body.case-immersive .story-status{top:0;}
+body.case-immersive .story-card{top:36px;}
+body.case-immersive .principle-grid article{padding:24px;min-height:0;}
+body.case-immersive .principle-grid h3{margin-top:20px;}
+@media(max-width:650px){body.case-immersive .principle-grid article{padding:18px;}body.case-immersive .story-stack{margin-top:20px;}body.case-immersive .story-card{height:min(62svh,510px);top:30px;}}
+
+/* Shorter interactive journeys, with a single compact exit. */
+body.case-immersive .story-stack{height:260svh;}
+body.case-immersive .relic-descent-track{height:340svh;}
+body.case-immersive .case-end{padding-top:40px;padding-bottom:48px;}
+body.case-immersive .rr-section{padding-top:64px;padding-bottom:64px;}
+@media(max-width:650px),(prefers-reduced-motion:reduce){body.case-immersive .relic-descent-track{height:auto;}}
+
+body.case-page.case-immersive [hidden]{display:none!important;}
